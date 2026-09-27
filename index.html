@@ -1317,6 +1317,24 @@ onclick="addStaff()">
 </div>
 
 
+<!-- Firebase / Firestore -->
+<script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore-compat.js"></script>
+<script>
+const firebaseConfig = {
+    apiKey: "AIzaSyBG5ClQ6GFqwOYovvCibHt_fkqtCX1rz4E",
+    authDomain: "med-care-355cc.firebaseapp.com",
+    projectId: "med-care-355cc",
+    storageBucket: "med-care-355cc.firebasestorage.app",
+    messagingSenderId: "695518201479",
+    appId: "1:695518201479:web:b40948fcebdab9d8069a22"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+const medicinesRef = db.collection("medicines");
+</script>
+
 <script>
 
 /* =========================
@@ -1804,6 +1822,81 @@ document.addEventListener("click",function(e){
 
 
 /* =========================
+   FIRESTORE - MEDICINES
+========================= */
+
+let firestoreReady = false;
+let firestoreLoading = false;
+
+function medicineData(m){
+    return {
+        date: m.date || "",
+        time: m.time || "",
+        patient: m.patient || "",
+        drug: m.drug || "",
+        dose: m.dose || "",
+        route: m.route || "",
+        giver: m.giver || "",
+        status: m.status || "รอดำเนินการ"
+    };
+}
+
+async function loadMedicinesFromFirestore(){
+    if(firestoreLoading) return;
+    firestoreLoading = true;
+
+    try{
+        const snapshot = await medicinesRef.get();
+
+        if(snapshot.empty){
+            // Seed the existing demo medicines once, so the current demo data remains visible.
+            const batch = db.batch();
+            medicines.forEach(m=>{
+                const ref = medicinesRef.doc();
+                batch.set(ref, medicineData(m));
+            });
+            await batch.commit();
+
+            const seeded = await medicinesRef.get();
+            medicines = seeded.docs.map(doc=>({
+                id: doc.id,
+                ...doc.data()
+            }));
+        }else{
+            medicines = snapshot.docs.map(doc=>({
+                id: doc.id,
+                ...doc.data()
+            }));
+            medicines.sort((a,b)=>
+                ((a.date||"")+" "+(a.time||"")).localeCompare(
+                    (b.date||"")+" "+(b.time||"")
+                )
+            );
+        }
+
+        firestoreReady = true;
+        renderAll();
+    }catch(error){
+        console.error("Firestore load error:", error);
+        alert("เชื่อมต่อ Firestore ไม่สำเร็จ\n\nตรวจสอบ Security Rules ของ Firestore ก่อนนะเพื่อน");
+    }finally{
+        firestoreLoading = false;
+    }
+}
+
+async function saveMedicineToFirestore(m){
+    const ref = await medicinesRef.add(medicineData(m));
+    m.id = ref.id;
+    return ref.id;
+}
+
+async function updateMedicineInFirestore(m){
+    if(!m.id) throw new Error("ไม่พบ ID ของรายการยา");
+    await medicinesRef.doc(m.id).update(medicineData(m));
+}
+
+
+/* =========================
    MEDICINE
 ========================= */
 
@@ -1897,7 +1990,7 @@ function renderMedicines(){
 }
 
 
-function confirmMedicine(i){
+async function confirmMedicine(i){
 
     const m=medicines[i];
 
@@ -1926,21 +2019,27 @@ function confirmMedicine(i){
     m.giver=currentUser;
     m.status="ให้ยาแล้ว";
 
-    history.unshift({
-        date:formatDate(m.date),
-        time:m.time,
-        patient:m.patient,
-        drug:m.drug,
-        giver:currentUser
-    });
+    try{
+        await updateMedicineInFirestore(m);
 
-    renderAll();
+        history.unshift({
+            date:formatDate(m.date),
+            time:m.time,
+            patient:m.patient,
+            drug:m.drug,
+            giver:currentUser
+        });
 
-    alert("บันทึกการให้ยาแล้ว");
+        renderAll();
+        alert("บันทึกการให้ยาแล้ว");
+    }catch(error){
+        console.error("Firestore update error:", error);
+        alert("บันทึกไม่สำเร็จ กรุณาตรวจสอบ Firestore Security Rules");
+    }
 }
 
 
-function addMedicine(){
+async function addMedicine(){
 
     if(currentRole!=="Admin"){
         alert("เฉพาะ Admin เท่านั้น");
@@ -1981,7 +2080,7 @@ function addMedicine(){
         return;
     }
 
-    medicines.push({
+    const newMedicine={
         date,
         time,
         patient,
@@ -1990,13 +2089,20 @@ function addMedicine(){
         route,
         giver,
         status:"รอดำเนินการ"
-    });
+    };
 
-    clearMedicineForm();
+    try{
+        await saveMedicineToFirestore(newMedicine);
+        medicines.push(newMedicine);
 
-    renderAll();
+        clearMedicineForm();
+        renderAll();
 
-    alert("เพิ่มรายการยาแล้ว");
+        alert("เพิ่มรายการยาและบันทึกลงฐานข้อมูลแล้ว");
+    }catch(error){
+        console.error("Firestore add error:", error);
+        alert("บันทึกไม่สำเร็จ กรุณาตรวจสอบ Firestore Security Rules");
+    }
 }
 
 
@@ -2628,6 +2734,7 @@ function renderAll(){
 document.addEventListener("DOMContentLoaded",()=>{
 
     renderAll();
+    loadMedicinesFromFirestore();
 
 });
 
