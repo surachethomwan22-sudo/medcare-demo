@@ -2,285 +2,591 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MedCare V3.2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MedCare V3.3</title>
 
 <style>
 *{box-sizing:border-box}
+
 body{
- margin:0;
- font-family:Arial,"Noto Sans Thai",sans-serif;
- background:#f4f8fa;
- color:#183b56
+    margin:0;
+    font-family:Arial,"Noto Sans Thai",sans-serif;
+    background:#f3f7f9;
+    color:#193b50;
 }
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
+
+button,input,select,textarea{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
 
 #loginPage{
- min-height:100vh;
- display:flex;
- align-items:center;
- justify-content:center;
- padding:20px;
- background:linear-gradient(135deg,#087f8c,#075e69)
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:linear-gradient(135deg,#087f8c,#064f59);
 }
+
 .login-box{
- width:100%;
- max-width:420px;
- padding:35px;
- background:#fff;
- border-radius:20px;
- box-shadow:0 20px 50px #0003
+    width:100%;
+    max-width:420px;
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 20px 50px #0004;
 }
+
 .logo{
- width:65px;height:65px;margin:auto;
- display:flex;align-items:center;justify-content:center;
- background:#087f8c;color:white;border-radius:16px;
- font-size:32px
+    width:65px;
+    height:65px;
+    margin:auto;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#087f8c;
+    color:white;
+    border-radius:16px;
+    font-size:32px;
 }
-.login-box h1{text-align:center;margin:15px 0 5px}
-.login-box p{text-align:center;color:#718797}
-label{display:block;margin:14px 0 7px;font-weight:bold;font-size:14px}
+
+.login-box h1{
+    text-align:center;
+    margin:15px 0 5px;
+}
+
+.login-box p{
+    text-align:center;
+    color:#718797;
+}
+
+label{
+    display:block;
+    margin:14px 0 7px;
+    font-weight:bold;
+    font-size:14px;
+}
+
 input,select,textarea{
- width:100%;
- padding:12px;
- border:1px solid #d8e4e8;
- border-radius:10px;
- outline:none
+    width:100%;
+    padding:12px;
+    border:1px solid #d7e4e8;
+    border-radius:10px;
+    outline:none;
+    background:white;
 }
-textarea{min-height:100px}
+
+input:focus,select:focus,textarea:focus{
+    border-color:#087f8c;
+    box-shadow:0 0 0 3px #087f8c15;
+}
+
+textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
 .login-btn{
- width:100%;padding:13px;margin-top:20px;
- border:0;border-radius:10px;
- background:#087f8c;color:white;font-weight:bold
+    width:100%;
+    padding:13px;
+    margin-top:20px;
+    border:0;
+    border-radius:10px;
+    background:#087f8c;
+    color:white;
+    font-weight:bold;
 }
+
 .demo{
- margin-top:15px;padding:12px;
- background:#edf8fa;border-radius:10px;
- text-align:center;font-size:12px;line-height:1.8
+    margin-top:15px;
+    padding:12px;
+    background:#edf8fa;
+    border-radius:10px;
+    text-align:center;
+    font-size:12px;
+    line-height:1.8;
 }
 
-#appPage{display:none;min-height:100vh}
+#appPage{
+    display:none;
+    min-height:100vh;
+}
+
 .sidebar{
- position:fixed;left:0;top:0;bottom:0;width:245px;
- padding:20px 15px;background:white;
- border-right:1px solid #e3ecef
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    width:245px;
+    padding:20px 15px;
+    background:white;
+    border-right:1px solid #e3ecef;
 }
-.brand{font-size:23px;font-weight:bold;color:#087f8c;padding:10px}
+
+.brand{
+    font-size:23px;
+    font-weight:bold;
+    color:#087f8c;
+    padding:10px;
+}
+
 .role{
- margin:12px 5px;padding:11px;
- background:#edf8fa;border-radius:10px;font-size:13px
+    margin:12px 5px;
+    padding:11px;
+    background:#edf8fa;
+    border-radius:10px;
+    font-size:13px;
 }
+
 .menu button{
- width:100%;padding:12px;margin:3px 0;
- border:0;border-radius:10px;
- background:transparent;color:#536c7c;text-align:left
+    width:100%;
+    padding:12px;
+    margin:3px 0;
+    border:0;
+    border-radius:10px;
+    background:transparent;
+    color:#536c7c;
+    text-align:left;
 }
-.menu button.active,.menu button:hover{
- background:#e4f6f8;color:#087f8c;font-weight:bold
+
+.menu button.active,
+.menu button:hover{
+    background:#e4f6f8;
+    color:#087f8c;
+    font-weight:bold;
 }
+
 .logout{
- position:absolute;bottom:20px;left:15px;right:15px;
- border:0;border-radius:10px;padding:11px;
- background:#ffe5e5;color:#c92a2a
+    position:absolute;
+    bottom:20px;
+    left:15px;
+    right:15px;
+    border:0;
+    border-radius:10px;
+    padding:11px;
+    background:#ffe5e5;
+    color:#c92a2a;
 }
 
-.main{margin-left:245px;padding:30px}
+.main{
+    margin-left:245px;
+    padding:30px;
+}
+
 .header{
- display:flex;justify-content:space-between;align-items:center;
- margin-bottom:25px
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
 }
-.header h1{margin:0}
-.header p{color:#718797}
-.user{background:white;padding:11px 15px;border-radius:10px}
 
-.page{display:none}
-.page.active{display:block}
+.header h1{
+    margin:0;
+}
+
+.header p{
+    color:#718797;
+}
+
+.user{
+    background:white;
+    padding:11px 15px;
+    border-radius:10px;
+}
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
 
 .cards{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:15px
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
 }
+
 .card{
- background:white;padding:20px;border-radius:15px;
- box-shadow:0 4px 15px #0000000c
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 4px 15px #0000000c;
 }
-.card span{font-size:13px;color:#718797}
-.card strong{display:block;font-size:30px;margin-top:7px}
-.red{color:#d64545}.orange{color:#d99016}.green{color:#29945c}
+
+.card span{
+    font-size:13px;
+    color:#718797;
+}
+
+.card strong{
+    display:block;
+    font-size:30px;
+    margin-top:7px;
+}
+
+.red{color:#d64545}
+.orange{color:#d99016}
+.green{color:#29945c}
 
 .panel{
- background:white;padding:20px;border-radius:15px;
- box-shadow:0 4px 15px #0000000c;
- overflow-x:auto
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 4px 15px #0000000c;
+    overflow-x:auto;
 }
-.section{margin-top:25px}
 
-table{width:100%;min-width:850px;border-collapse:collapse}
-th,td{
- padding:12px;border-bottom:1px solid #edf2f5;
- text-align:left;font-size:13px
+.section{
+    margin-top:25px;
 }
-th{background:#f8fbfc;color:#6b8190}
+
+table{
+    width:100%;
+    min-width:850px;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:12px;
+    border-bottom:1px solid #edf2f5;
+    text-align:left;
+    font-size:13px;
+}
+
+th{
+    background:#f8fbfc;
+    color:#6b8190;
+}
 
 .status{
- display:inline-block;padding:5px 9px;
- border-radius:20px;font-size:11px;font-weight:bold
+    display:inline-block;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
 }
-.waiting{background:#e4f6f8;color:#087f8c}
-.soon{background:#fff2cd;color:#946d00}
-.done{background:#e1f7e9;color:#218838}
-.late{background:#ffe3e3;color:#c92a2a}
+
+.waiting{
+    background:#e4f6f8;
+    color:#087f8c;
+}
+
+.soon{
+    background:#fff2cd;
+    color:#946d00;
+}
+
+.done{
+    background:#e1f7e9;
+    color:#218838;
+}
+
+.late{
+    background:#ffe3e3;
+    color:#c92a2a;
+}
 
 .action{
- border:0;padding:8px 12px;
- border-radius:8px;background:#087f8c;color:white
+    border:0;
+    padding:8px 12px;
+    border-radius:8px;
+    background:#087f8c;
+    color:white;
 }
-.danger{background:#c92a2a}
-.secondary{background:#e9eff2;color:#385568}
+
+.danger{
+    background:#c92a2a;
+}
+
+.secondary{
+    background:#e9eff2;
+    color:#385568;
+}
 
 .form-grid{
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:15px
-}
-.full{grid-column:1/-1}
-.form-actions{display:flex;gap:10px;margin-top:18px}
-.form-actions button{border:0;border-radius:9px;padding:11px 18px}
-.primary{background:#087f8c;color:white}
-
-.search-box{
- position:relative;
- margin-bottom:15px
-}
-.search-box input{padding-left:40px}
-.search-icon{
- position:absolute;left:13px;top:12px;color:#718797
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
 }
 
-.drug-count{
- margin-bottom:15px;
- color:#718797;
- font-size:13px
+.full{
+    grid-column:1/-1;
+}
+
+.form-actions{
+    display:flex;
+    gap:10px;
+    margin-top:18px;
+}
+
+.form-actions button{
+    border:0;
+    border-radius:9px;
+    padding:11px 18px;
+}
+
+.primary{
+    background:#087f8c;
+    color:white;
+}
+
+/* SEARCH SELECT */
+
+.search-select{
+    position:relative;
+}
+
+.search-select input{
+    padding-right:42px;
+}
+
+.search-select-icon{
+    position:absolute;
+    right:13px;
+    top:12px;
+    color:#718797;
+}
+
+.search-results{
+    display:none;
+    position:absolute;
+    z-index:50;
+    top:100%;
+    left:0;
+    right:0;
+    max-height:240px;
+    overflow-y:auto;
+    background:white;
+    border:1px solid #d9e5e9;
+    border-radius:10px;
+    margin-top:5px;
+    box-shadow:0 8px 25px #0002;
+}
+
+.search-results.show{
+    display:block;
+}
+
+.search-item{
+    padding:11px 13px;
+    border-bottom:1px solid #edf2f5;
+    cursor:pointer;
+}
+
+.search-item:hover{
+    background:#edf8fa;
+}
+
+.search-item strong{
+    display:block;
+    color:#087f8c;
+}
+
+.search-item small{
+    color:#718797;
+}
+
+/* DRUG LIBRARY */
+
+.drug-search{
+    margin-bottom:15px;
 }
 
 .drug-grid{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:12px
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
 }
+
 .drug-card{
- border:1px solid #e1eaee;
- border-radius:12px;
- padding:15px;
- background:#fbfdfe
+    border:1px solid #e1eaee;
+    border-radius:12px;
+    padding:15px;
+    background:#fbfdfe;
 }
+
 .drug-card h3{
- margin:0 0 7px;
- color:#087f8c;
- font-size:16px
+    margin:0 0 7px;
+    color:#087f8c;
+    font-size:16px;
 }
+
 .drug-card p{
- margin:5px 0;
- font-size:12px;
- color:#607888
+    margin:5px 0;
+    font-size:12px;
+    color:#607888;
 }
+
 .drug-card button{
- margin-top:10px;
- width:100%;
- padding:9px;
- border:0;border-radius:8px;
- background:#087f8c;color:white
+    margin-top:10px;
+    width:100%;
+    padding:9px;
+    border:0;
+    border-radius:8px;
+    background:#087f8c;
+    color:white;
 }
 
 .notice{
- padding:12px 15px;
- margin-bottom:15px;
- border-radius:10px;
- background:#fff8df;
- color:#765c13;
- font-size:12px
+    padding:12px 15px;
+    margin-bottom:15px;
+    border-radius:10px;
+    background:#fff8df;
+    color:#765c13;
+    font-size:12px;
 }
 
 .alert-box{
- padding:15px;
- border-radius:10px;
- margin-bottom:10px;
- background:#fff8e1
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:10px;
+    background:#fff8e1;
 }
-.alert-high{background:#ffe3e3}
+
+.alert-high{
+    background:#ffe3e3;
+}
 
 .empty{
- padding:25px;
- text-align:center;
- color:#718797
+    padding:25px;
+    text-align:center;
+    color:#718797;
 }
 
 .calendar-top{
- display:flex;
- justify-content:space-between;
- align-items:center;
- margin-bottom:15px
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
 }
-.calendar-buttons{display:flex;gap:5px}
+
+.calendar-buttons{
+    display:flex;
+    gap:5px;
+}
+
 .calendar-buttons button{
- border:0;padding:9px 12px;
- border-radius:8px;
- background:#e4f6f8;color:#087f8c
+    border:0;
+    padding:9px 12px;
+    border-radius:8px;
+    background:#e4f6f8;
+    color:#087f8c;
 }
-.calendar-title{font-size:20px;font-weight:bold}
+
+.calendar-title{
+    font-size:20px;
+    font-weight:bold;
+}
+
 .calendar{
- display:grid;
- grid-template-columns:repeat(7,1fr);
- gap:5px
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:5px;
 }
+
 .day-name{
- padding:10px;
- text-align:center;
- color:#718797;font-weight:bold
+    padding:10px;
+    text-align:center;
+    color:#718797;
+    font-weight:bold;
 }
+
 .day{
- min-height:105px;
- padding:8px;
- background:#f9fcfd;
- border:1px solid #e4edf1;
- border-radius:8px
+    min-height:105px;
+    padding:8px;
+    background:#f9fcfd;
+    border:1px solid #e4edf1;
+    border-radius:8px;
 }
+
 .day.today{
- border:2px solid #087f8c;
- background:#e4f6f8
+    border:2px solid #087f8c;
+    background:#e4f6f8;
 }
-.day-number{font-weight:bold}
+
+.day-number{
+    font-weight:bold;
+}
+
 .event{
- margin-top:6px;
- padding:5px;
- border-radius:6px;
- background:#fff2cd;
- color:#7d5c00;
- font-size:10px
+    margin-top:6px;
+    padding:5px;
+    border-radius:6px;
+    background:#fff2cd;
+    color:#7d5c00;
+    font-size:10px;
 }
-.event.done{background:#e1f7e9;color:#218838}
+
+.event.done{
+    background:#e1f7e9;
+    color:#218838;
+}
 
 @media(max-width:1000px){
- .sidebar{
-  position:relative;width:100%;height:auto
- }
- .logout{
-  position:relative;left:auto;right:auto;bottom:auto;
-  width:100%;margin-top:10px
- }
- .main{margin-left:0;padding:18px}
- .cards{grid-template-columns:repeat(2,1fr)}
- .drug-grid{grid-template-columns:repeat(2,1fr)}
+
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+    }
+
+    .logout{
+        position:relative;
+        left:auto;
+        right:auto;
+        bottom:auto;
+        width:100%;
+        margin-top:10px;
+    }
+
+    .main{
+        margin-left:0;
+        padding:18px;
+    }
+
+    .cards{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .drug-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
 }
+
 @media(max-width:600px){
- .cards,.drug-grid,.form-grid{grid-template-columns:1fr}
- .header{display:block}
- .user{margin-top:10px}
- .calendar{gap:2px}
- .day{min-height:70px;padding:4px}
- .event{font-size:8px}
+
+    .cards,
+    .drug-grid,
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .header{
+        display:block;
+    }
+
+    .user{
+        margin-top:10px;
+    }
+
+    .calendar{
+        gap:2px;
+    }
+
+    .day{
+        min-height:70px;
+        padding:4px;
+    }
+
+    .event{
+        font-size:8px;
+    }
 }
 </style>
 </head>
@@ -288,29 +594,48 @@ th{background:#f8fbfc;color:#6b8190}
 <body>
 
 <!-- LOGIN -->
+
 <div id="loginPage">
+
 <div class="login-box">
 
 <div class="logo">✚</div>
+
 <h1>MedCare</h1>
-<p>Hospital Medication System V3.2</p>
+
+<p>Hospital Medication System V3.3</p>
 
 <form onsubmit="login(event)">
 
 <label>Username</label>
-<input id="username" required autocomplete="username">
+
+<input
+id="username"
+required
+autocomplete="username"
+>
 
 <label>Password</label>
-<input id="password" type="password" required autocomplete="current-password">
 
-<button class="login-btn">เข้าสู่ระบบ</button>
+<input
+id="password"
+type="password"
+required
+autocomplete="current-password"
+>
+
+<button class="login-btn">
+เข้าสู่ระบบ
+</button>
 
 </form>
 
 <div class="demo">
 บัญชีทดลอง<br>
-👑 Admin: <b>admin</b> / <b>admin123</b><br>
-👩‍⚕️ User: <b>nurse</b> / <b>1234</b>
+👑 Admin:
+<b>admin</b> / <b>admin123</b><br>
+👩‍⚕️ User:
+<b>nurse</b> / <b>1234</b>
 </div>
 
 </div>
@@ -318,20 +643,27 @@ th{background:#f8fbfc;color:#6b8190}
 
 
 <!-- APP -->
+
 <div id="appPage">
 
 <aside class="sidebar">
 
-<div class="brand">✚ MedCare</div>
+<div class="brand">
+✚ MedCare
+</div>
 
 <div class="role">
-ผู้ใช้: <b id="sidebarUser"></b><br>
-สิทธิ์: <b id="sidebarRole"></b>
+ผู้ใช้:
+<b id="sidebarUser"></b>
+<br>
+สิทธิ์:
+<b id="sidebarRole"></b>
 </div>
 
 <div class="menu">
 
-<button class="active" onclick="openPage('dashboard',this)">
+<button class="active"
+onclick="openPage('dashboard',this)">
 🏠 Dashboard
 </button>
 
@@ -359,13 +691,16 @@ th{background:#f8fbfc;color:#6b8190}
 📋 ประวัติการให้ยา
 </button>
 
-<button id="staffMenu" onclick="openPage('staff',this)">
+<button id="staffMenu"
+onclick="openPage('staff',this)">
 👩‍⚕️ บุคลากร
 </button>
 
 </div>
 
-<button class="logout" onclick="logout()">ออกจากระบบ</button>
+<button class="logout" onclick="logout()">
+ออกจากระบบ
+</button>
 
 </aside>
 
@@ -373,6 +708,7 @@ th{background:#f8fbfc;color:#6b8190}
 <main class="main">
 
 <header class="header">
+
 <div>
 <h1 id="pageTitle">Dashboard</h1>
 <p>ระบบจัดการและติดตามการให้ยา</p>
@@ -381,10 +717,12 @@ th{background:#f8fbfc;color:#6b8190}
 <div class="user">
 👤 <b id="currentUser"></b>
 </div>
+
 </header>
 
 
 <!-- DASHBOARD -->
+
 <section id="dashboard" class="page active">
 
 <div class="cards">
@@ -400,7 +738,7 @@ th{background:#f8fbfc;color:#6b8190}
 </div>
 
 <div class="card">
-<span>คลังยาตัวอย่าง</span>
+<span>รายการยาในคลัง</span>
 <strong id="drugCount">0</strong>
 </div>
 
@@ -412,12 +750,17 @@ th{background:#f8fbfc;color:#6b8190}
 </div>
 
 <div class="section">
-<h2>💊 รายการยาที่ต้องดำเนินการ</h2>
+
+<h2>
+💊 รายการยาที่ต้องดำเนินการ
+</h2>
 
 <div class="panel">
 
 <table>
+
 <thead>
+
 <tr>
 <th>วันที่</th>
 <th>เวลา</th>
@@ -428,47 +771,60 @@ th{background:#f8fbfc;color:#6b8190}
 <th>สถานะ</th>
 <th></th>
 </tr>
+
 </thead>
+
 <tbody id="medicineTable"></tbody>
+
 </table>
 
 </div>
+
 </div>
 
 </section>
 
 
 <!-- PATIENTS -->
+
 <section id="patients" class="page">
 
 <h2>👤 รายชื่อผู้ป่วย</h2>
 
 <input
-class="search-box"
 id="patientSearch"
-placeholder="ค้นหา HN หรือชื่อผู้ป่วย"
+placeholder="🔎 ค้นหา HN หรือชื่อผู้ป่วย"
 onkeyup="searchPatient()"
 >
+
+<br><br>
 
 <div class="panel">
 
 <table>
+
 <thead>
+
 <tr>
 <th>HN</th>
 <th>ชื่อผู้ป่วย</th>
 <th>ห้อง/เตียง</th>
 <th>แพทย์</th>
 </tr>
+
 </thead>
+
 <tbody id="patientTable"></tbody>
+
 </table>
 
 </div>
+
 </section>
 
 
-<!-- MEDICATION -->
+<!-- MEDICATIONS -->
+
 <section id="medications" class="page">
 
 <h2>💊 รายการยา</h2>
@@ -482,63 +838,187 @@ onkeyup="searchPatient()"
 <div class="form-grid">
 
 <div>
+
 <label>วันที่</label>
-<input id="medDate" type="date">
+
+<input
+id="medDate"
+type="date"
+>
+
 </div>
 
 <div>
+
 <label>เวลา</label>
-<input id="medTime" type="time">
+
+<input
+id="medTime"
+type="time"
+>
+
 </div>
 
 <div>
+
 <label>ผู้ป่วย</label>
+
 <select id="medPatient"></select>
+
 </div>
 
-<div>
-<label>ค้นหาและเลือกยา</label>
-<select id="medDrug"></select>
-</div>
+
+<!-- ⭐ ช่องยาแบบค้นหา -->
 
 <div>
-<label>ขนาดยา — กรอกตามคำสั่งที่ได้รับ</label>
-<input id="medDose" placeholder="ตัวอย่าง: ตามคำสั่งแพทย์">
+
+<label>รายการยา</label>
+
+<div class="search-select">
+
+<input
+id="medDrugSearch"
+placeholder="🔎 พิมพ์ชื่อยาเพื่อค้นหา..."
+autocomplete="off"
+oninput="searchMedicineInput()"
+onclick="searchMedicineInput()"
+>
+
+<span class="search-select-icon">
+💊
+</span>
+
+<div
+id="medDrugResults"
+class="search-results">
 </div>
 
+</div>
+
+<input
+type="hidden"
+id="medDrug"
+>
+
+<div
+id="selectedDrug"
+style="
+margin-top:7px;
+font-size:12px;
+color:#087f8c;
+font-weight:bold;
+">
+ยังไม่ได้เลือกยา
+</div>
+
+</div>
+
+
 <div>
+
+<label>
+ขนาดยา — กรอกตามคำสั่งที่ได้รับ
+</label>
+
+<input
+id="medDose"
+placeholder="เช่น ตามคำสั่งแพทย์"
+>
+
+</div>
+
+
+<div>
+
 <label>วิธีให้ยา</label>
+
 <select id="medRoute">
+
 <option>PO</option>
 <option>IV</option>
 <option>IM</option>
 <option>SC</option>
 <option>อื่น ๆ</option>
+
 </select>
+
 </div>
+
+
+<!-- ⭐ ช่องผู้ให้ยาแบบค้นหา -->
 
 <div>
+
 <label>ผู้ให้ยา</label>
-<select id="medGiver"></select>
+
+<div class="search-select">
+
+<input
+id="giverSearch"
+placeholder="🔎 ค้นหาชื่อบุคลากร..."
+autocomplete="off"
+oninput="searchGiverInput()"
+onclick="searchGiverInput()"
+>
+
+<span class="search-select-icon">
+👩‍⚕️
+</span>
+
+<div
+id="giverResults"
+class="search-results">
 </div>
 
 </div>
+
+<input
+type="hidden"
+id="medGiver"
+>
+
+<div
+id="selectedGiver"
+style="
+margin-top:7px;
+font-size:12px;
+color:#087f8c;
+font-weight:bold;
+">
+ยังไม่ได้เลือกผู้ให้ยา
+</div>
+
+</div>
+
+</div>
+
 
 <div class="form-actions">
-<button class="primary" onclick="addMedicine()">
+
+<button
+class="primary"
+onclick="addMedicine()">
 บันทึกรายการยา
 </button>
-<button class="secondary" onclick="clearMedicineForm()">
+
+<button
+class="secondary"
+onclick="clearMedicineForm()">
 ล้างข้อมูล
 </button>
+
 </div>
 
 </div>
+
 
 <hr>
 
+
 <table>
+
 <thead>
+
 <tr>
 <th>วันที่</th>
 <th>เวลา</th>
@@ -550,15 +1030,20 @@ onkeyup="searchPatient()"
 <th>สถานะ</th>
 <th></th>
 </tr>
+
 </thead>
+
 <tbody id="allMedicineTable"></tbody>
+
 </table>
 
 </div>
+
 </section>
 
 
 <!-- DRUG LIBRARY -->
+
 <section id="drugLibrary" class="page">
 
 <h2>📚 คลังรายการยา Demo</h2>
@@ -570,24 +1055,30 @@ onkeyup="searchPatient()"
 
 <div class="panel">
 
-<div class="search-box">
-<span class="search-icon">🔎</span>
 <input
 id="drugSearch"
-placeholder="ค้นหาชื่อยา ชื่อสามัญ หรือกลุ่มยา..."
+class="drug-search"
+placeholder="🔎 ค้นหาชื่อยา ชื่อสามัญ หรือกลุ่มยา..."
 oninput="searchDrugs()"
 >
+
+<div
+id="drugResultCount"
+style="margin-bottom:15px;color:#718797;font-size:13px">
 </div>
 
-<div class="drug-count" id="drugResultCount"></div>
-
-<div class="drug-grid" id="drugGrid"></div>
+<div
+class="drug-grid"
+id="drugGrid">
+</div>
 
 </div>
+
 </section>
 
 
 <!-- CALENDAR -->
+
 <section id="calendarPage" class="page">
 
 <h2>📅 ปฏิทินการให้ยา</h2>
@@ -597,14 +1088,22 @@ oninput="searchDrugs()"
 <div class="calendar-top">
 
 <div class="calendar-buttons">
+
 <button onclick="previousMonth()">‹</button>
+
 <button onclick="todayMonth()">วันนี้</button>
+
 <button onclick="nextMonth()">›</button>
-</div>
-
-<div class="calendar-title" id="calendarTitle"></div>
 
 </div>
+
+<div
+class="calendar-title"
+id="calendarTitle">
+</div>
+
+</div>
+
 
 <div class="calendar">
 
@@ -618,17 +1117,23 @@ oninput="searchDrugs()"
 
 </div>
 
-<div class="calendar" id="calendarGrid"></div>
+<div
+class="calendar"
+id="calendarGrid">
+</div>
 
-<div id="calendarDetail" style="margin-top:20px">
-<h3>เลือกรายการในปฏิทิน</h3>
+<div
+id="calendarDetail"
+style="margin-top:20px">
 </div>
 
 </div>
+
 </section>
 
 
 <!-- REPORT -->
+
 <section id="report" class="page">
 
 <h2>🚨 รายงานปัญหา</h2>
@@ -638,52 +1143,76 @@ oninput="searchDrugs()"
 <div class="form-grid">
 
 <div>
+
 <label>ผู้ป่วย</label>
+
 <select id="problemPatient"></select>
+
 </div>
 
 <div>
+
 <label>ระดับความเร่งด่วน</label>
+
 <select id="problemPriority">
+
 <option>ปกติ</option>
 <option>เร่งด่วน</option>
 <option>เร่งด่วนมาก</option>
+
 </select>
+
 </div>
 
 <div>
+
 <label>ประเภทปัญหา</label>
+
 <select id="problemType">
+
 <option>ให้ยาไม่ครบ</option>
 <option>ให้ยาล่าช้า</option>
 <option>ไม่พบยา</option>
 <option>ผู้ป่วยปฏิเสธยา</option>
 <option>สงสัยอาการไม่พึงประสงค์</option>
 <option>อื่น ๆ</option>
+
 </select>
+
 </div>
 
 <div class="full">
+
 <label>รายละเอียด</label>
+
 <textarea id="problemDetail"></textarea>
+
 </div>
 
 </div>
 
 <div class="form-actions">
-<button class="primary" onclick="submitProblem()">
+
+<button
+class="primary"
+onclick="submitProblem()">
 ส่งรายงาน
 </button>
-</div>
 
 </div>
 
-<div class="section" id="problemList"></div>
+</div>
+
+<div
+class="section"
+id="problemList">
+</div>
 
 </section>
 
 
 <!-- HISTORY -->
+
 <section id="history" class="page">
 
 <h2>📋 ประวัติการให้ยา</h2>
@@ -691,7 +1220,9 @@ oninput="searchDrugs()"
 <div class="panel">
 
 <table>
+
 <thead>
+
 <tr>
 <th>วันที่</th>
 <th>เวลา</th>
@@ -700,15 +1231,20 @@ oninput="searchDrugs()"
 <th>ผู้ให้ยา</th>
 <th>ผล</th>
 </tr>
+
 </thead>
+
 <tbody id="historyTable"></tbody>
+
 </table>
 
 </div>
+
 </section>
 
 
 <!-- STAFF -->
+
 <section id="staff" class="page">
 
 <h2>👩‍⚕️ จัดการบุคลากร</h2>
@@ -718,44 +1254,66 @@ oninput="searchDrugs()"
 <div class="form-grid">
 
 <div>
+
 <label>ชื่อบุคลากร</label>
-<input id="staffName">
+
+<input
+id="staffName"
+placeholder="ชื่อ-นามสกุล">
 </div>
 
 <div>
+
 <label>ตำแหน่ง</label>
+
 <select id="staffRole">
+
 <option>พยาบาล</option>
 <option>แพทย์</option>
 <option>เภสัชกร</option>
 <option>ผู้ช่วยพยาบาล</option>
 <option>บุคลากรอื่น</option>
+
 </select>
+
 </div>
 
 </div>
 
 <div class="form-actions">
-<button class="primary" onclick="addStaff()">เพิ่มบุคลากร</button>
+
+<button
+class="primary"
+onclick="addStaff()">
+เพิ่มบุคลากร
+</button>
+
 </div>
 
 <hr>
 
 <table>
+
 <thead>
+
 <tr>
 <th>ชื่อ</th>
 <th>ตำแหน่ง</th>
 <th></th>
 </tr>
+
 </thead>
+
 <tbody id="staffTable"></tbody>
+
 </table>
 
 </div>
+
 </section>
 
 </main>
+
 </div>
 
 
@@ -766,8 +1324,18 @@ oninput="searchDrugs()"
 ========================= */
 
 const accounts=[
- {username:"admin",password:"admin123",role:"Admin",name:"ผู้ดูแลระบบ"},
- {username:"nurse",password:"1234",role:"User",name:"พยาบาลเวรเช้า"}
+    {
+        username:"admin",
+        password:"admin123",
+        role:"Admin",
+        name:"ผู้ดูแลระบบ"
+    },
+    {
+        username:"nurse",
+        password:"1234",
+        role:"User",
+        name:"พยาบาลเวรเช้า"
+    }
 ];
 
 let currentUser="";
@@ -779,11 +1347,26 @@ let currentRole="";
 ========================= */
 
 let staff=[
- {name:"พยาบาลเวรเช้า",role:"พยาบาล"},
- {name:"พยาบาลเวรบ่าย",role:"พยาบาล"},
- {name:"นพ.สมชาย",role:"แพทย์"},
- {name:"เภสัชกรกมล",role:"เภสัชกร"},
- {name:"ผู้ช่วยพยาบาลสายใจ",role:"ผู้ช่วยพยาบาล"}
+    {
+        name:"พยาบาลเวรเช้า",
+        role:"พยาบาล"
+    },
+    {
+        name:"พยาบาลเวรบ่าย",
+        role:"พยาบาล"
+    },
+    {
+        name:"นพ.สมชาย",
+        role:"แพทย์"
+    },
+    {
+        name:"เภสัชกรกมล",
+        role:"เภสัชกร"
+    },
+    {
+        name:"ผู้ช่วยพยาบาลสายใจ",
+        role:"ผู้ช่วยพยาบาล"
+    }
 ];
 
 
@@ -792,18 +1375,17 @@ let staff=[
 ========================= */
 
 const patients=[
- ["HN10021","ผู้ป่วยตัวอย่าง A","301/1","นพ.สมชาย"],
- ["HN10022","ผู้ป่วยตัวอย่าง B","301/2","พญ.กมล"],
- ["HN10023","ผู้ป่วยตัวอย่าง C","302/1","นพ.วิชัย"],
- ["HN10024","ผู้ป่วยตัวอย่าง D","302/2","พญ.อรทัย"],
- ["HN10025","ผู้ป่วยตัวอย่าง E","303/1","นพ.สมชาย"],
- ["HN10026","ผู้ป่วยตัวอย่าง F","303/2","พญ.กมล"]
+    ["HN10021","ผู้ป่วยตัวอย่าง A","301/1","นพ.สมชาย"],
+    ["HN10022","ผู้ป่วยตัวอย่าง B","301/2","พญ.กมล"],
+    ["HN10023","ผู้ป่วยตัวอย่าง C","302/1","นพ.วิชัย"],
+    ["HN10024","ผู้ป่วยตัวอย่าง D","302/2","พญ.อรทัย"],
+    ["HN10025","ผู้ป่วยตัวอย่าง E","303/1","นพ.สมชาย"],
+    ["HN10026","ผู้ป่วยตัวอย่าง F","303/2","พญ.กมล"]
 ];
 
 
 /* =========================
    DRUG LIBRARY
-   Demo names only
 ========================= */
 
 const drugs=[
@@ -863,8 +1445,8 @@ const drugs=[
 ["Diazepam","Diazepam","ยากลุ่มกดประสาท"],
 ["Lorazepam","Lorazepam","ยากลุ่มกดประสาท"],
 
-["Potassium chloride","Potassium chloride","สารละลาย/อิเล็กโทรไลต์"],
-["Magnesium sulfate","Magnesium sulfate","สารละลาย/อิเล็กโทรไลต์"],
+["Potassium chloride","Potassium chloride","อิเล็กโทรไลต์"],
+["Magnesium sulfate","Magnesium sulfate","อิเล็กโทรไลต์"],
 ["Normal saline","Sodium chloride 0.9%","สารละลาย"],
 ["Dextrose","Dextrose","สารละลาย"]
 
@@ -878,62 +1460,61 @@ const drugs=[
 let medicines=[
 
 {
-date:"2026-09-27",
-time:"08:00",
-patient:"ผู้ป่วยตัวอย่าง A",
-drug:"Paracetamol",
-dose:"ตามคำสั่งแพทย์",
-route:"PO",
-giver:"พยาบาลเวรเช้า",
-status:"ให้ยาแล้ว"
+    date:"2026-09-27",
+    time:"08:00",
+    patient:"ผู้ป่วยตัวอย่าง A",
+    drug:"Paracetamol",
+    dose:"ตามคำสั่งแพทย์",
+    route:"PO",
+    giver:"พยาบาลเวรเช้า",
+    status:"ให้ยาแล้ว"
 },
 
 {
-date:"2026-09-27",
-time:"08:30",
-patient:"ผู้ป่วยตัวอย่าง B",
-drug:"Omeprazole",
-dose:"ตามคำสั่งแพทย์",
-route:"PO",
-giver:"",
-status:"ใกล้ถึงเวลา"
+    date:"2026-09-27",
+    time:"08:30",
+    patient:"ผู้ป่วยตัวอย่าง B",
+    drug:"Omeprazole",
+    dose:"ตามคำสั่งแพทย์",
+    route:"PO",
+    giver:"",
+    status:"ใกล้ถึงเวลา"
 },
 
 {
-date:"2026-09-28",
-time:"09:00",
-patient:"ผู้ป่วยตัวอย่าง C",
-drug:"Ceftriaxone",
-dose:"ตามคำสั่งแพทย์",
-route:"IV",
-giver:"",
-status:"รอดำเนินการ"
+    date:"2026-09-28",
+    time:"09:00",
+    patient:"ผู้ป่วยตัวอย่าง C",
+    drug:"Ceftriaxone",
+    dose:"ตามคำสั่งแพทย์",
+    route:"IV",
+    giver:"",
+    status:"รอดำเนินการ"
 },
 
 {
-date:"2026-09-29",
-time:"07:30",
-patient:"ผู้ป่วยตัวอย่าง D",
-drug:"Amlodipine",
-dose:"ตามคำสั่งแพทย์",
-route:"PO",
-giver:"",
-status:"รอดำเนินการ"
+    date:"2026-09-29",
+    time:"07:30",
+    patient:"ผู้ป่วยตัวอย่าง D",
+    drug:"Amlodipine",
+    dose:"ตามคำสั่งแพทย์",
+    route:"PO",
+    giver:"",
+    status:"รอดำเนินการ"
 }
 
 ];
 
-
 let problems=[];
 
 let history=[
- {
- date:"27/09/2026",
- time:"08:00",
- patient:"ผู้ป่วยตัวอย่าง A",
- drug:"Paracetamol",
- giver:"พยาบาลเวรเช้า"
- }
+{
+    date:"27/09/2026",
+    time:"08:00",
+    patient:"ผู้ป่วยตัวอย่าง A",
+    drug:"Paracetamol",
+    giver:"พยาบาลเวรเช้า"
+}
 ];
 
 
@@ -943,77 +1524,76 @@ let history=[
 
 function login(e){
 
-e.preventDefault();
+    e.preventDefault();
 
-const username=
-document.getElementById("username").value.trim();
+    const username=
+        document.getElementById("username").value.trim();
 
-const password=
-document.getElementById("password").value;
+    const password=
+        document.getElementById("password").value;
 
-const account=
-accounts.find(a=>
-a.username===username &&
-a.password===password
-);
+    const account=
+        accounts.find(a=>
+            a.username===username &&
+            a.password===password
+        );
 
-if(!account){
+    if(!account){
+        alert("Username หรือ Password ไม่ถูกต้อง");
+        return;
+    }
 
-alert("Username หรือ Password ไม่ถูกต้อง");
-return;
+    currentUser=account.name;
+    currentRole=account.role;
 
-}
+    document.getElementById("currentUser").innerText=currentUser;
+    document.getElementById("sidebarUser").innerText=currentUser;
+    document.getElementById("sidebarRole").innerText=currentRole;
 
-currentUser=account.name;
-currentRole=account.role;
+    document.getElementById("loginPage").style.display="none";
+    document.getElementById("appPage").style.display="block";
 
-document.getElementById("currentUser").innerText=currentUser;
-document.getElementById("sidebarUser").innerText=currentUser;
-document.getElementById("sidebarRole").innerText=currentRole;
-
-document.getElementById("loginPage").style.display="none";
-document.getElementById("appPage").style.display="block";
-
-setupPermissions();
-renderAll();
-
+    setupPermissions();
+    renderAll();
 }
 
 
 function logout(){
 
-currentUser="";
-currentRole="";
+    currentUser="";
+    currentRole="";
 
-document.getElementById("appPage").style.display="none";
-document.getElementById("loginPage").style.display="flex";
+    document.getElementById("appPage").style.display="none";
+    document.getElementById("loginPage").style.display="flex";
 
-document.getElementById("username").value="";
-document.getElementById("password").value="";
-
+    document.getElementById("username").value="";
+    document.getElementById("password").value="";
 }
 
+
+/* =========================
+   PERMISSIONS
+========================= */
 
 function setupPermissions(){
 
-const staffMenu=
-document.getElementById("staffMenu");
+    const staffMenu=
+        document.getElementById("staffMenu");
 
-const medicineForm=
-document.getElementById("adminMedicineForm");
+    const medicineForm=
+        document.getElementById("adminMedicineForm");
 
-if(currentRole==="Admin"){
+    if(currentRole==="Admin"){
 
-staffMenu.style.display="block";
-medicineForm.style.display="block";
+        staffMenu.style.display="block";
+        medicineForm.style.display="block";
 
-}else{
+    }else{
 
-staffMenu.style.display="none";
-medicineForm.style.display="none";
+        staffMenu.style.display="none";
+        medicineForm.style.display="none";
 
-}
-
+    }
 }
 
 
@@ -1023,38 +1603,204 @@ medicineForm.style.display="none";
 
 function openPage(page,button){
 
-document
-.querySelectorAll(".page")
-.forEach(x=>x.classList.remove("active"));
+    document
+        .querySelectorAll(".page")
+        .forEach(x=>x.classList.remove("active"));
 
-document
-.getElementById(page)
-.classList.add("active");
+    document
+        .getElementById(page)
+        .classList.add("active");
 
-document
-.querySelectorAll(".menu button")
-.forEach(x=>x.classList.remove("active"));
+    document
+        .querySelectorAll(".menu button")
+        .forEach(x=>x.classList.remove("active"));
 
-button.classList.add("active");
+    button.classList.add("active");
 
-const titles={
-dashboard:"Dashboard",
-patients:"ผู้ป่วย",
-medications:"รายการยา",
-drugLibrary:"คลังยา",
-calendarPage:"ปฏิทินการให้ยา",
-report:"รายงานปัญหา",
-history:"ประวัติการให้ยา",
-staff:"บุคลากร"
-};
+    const titles={
+        dashboard:"Dashboard",
+        patients:"ผู้ป่วย",
+        medications:"รายการยา",
+        drugLibrary:"คลังยา",
+        calendarPage:"ปฏิทินการให้ยา",
+        report:"รายงานปัญหา",
+        history:"ประวัติการให้ยา",
+        staff:"บุคลากร"
+    };
 
-document.getElementById("pageTitle").innerText=titles[page];
+    document.getElementById("pageTitle").innerText=titles[page];
 
-if(page==="calendarPage")renderCalendar();
+    if(page==="calendarPage"){
+        renderCalendar();
+    }
 
-if(page==="drugLibrary")searchDrugs();
+    if(page==="drugLibrary"){
+        searchDrugs();
+    }
+}
+
+
+/* =========================
+   DRUG SEARCH IN FORM
+========================= */
+
+function searchMedicineInput(){
+
+    const input=
+        document.getElementById("medDrugSearch");
+
+    const box=
+        document.getElementById("medDrugResults");
+
+    const q=
+        input.value.toLowerCase().trim();
+
+    let result=drugs;
+
+    if(q){
+
+        result=drugs.filter(d=>
+            d[0].toLowerCase().includes(q) ||
+            d[1].toLowerCase().includes(q) ||
+            d[2].toLowerCase().includes(q)
+        );
+
+    }
+
+    result=result.slice(0,15);
+
+    if(result.length===0){
+
+        box.innerHTML=
+            `<div class="empty">ไม่พบรายการยา</div>`;
+
+    }else{
+
+        box.innerHTML=result.map((d,i)=>`
+
+            <div
+                class="search-item"
+                onclick="chooseDrug(${drugs.indexOf(d)})">
+
+                <strong>${d[0]}</strong>
+
+                <small>
+                    ${d[1]} · ${d[2]}
+                </small>
+
+            </div>
+
+        `).join("");
+
+    }
+
+    box.classList.add("show");
+}
+
+
+function chooseDrug(index){
+
+    const drug=drugs[index];
+
+    document.getElementById("medDrugSearch").value=drug[0];
+
+    document.getElementById("medDrug").value=drug[0];
+
+    document.getElementById("selectedDrug").innerText=
+        "✓ เลือกยา: "+drug[0];
+
+    document
+        .getElementById("medDrugResults")
+        .classList.remove("show");
 
 }
+
+
+/* =========================
+   GIVER SEARCH
+========================= */
+
+function searchGiverInput(){
+
+    const input=
+        document.getElementById("giverSearch");
+
+    const box=
+        document.getElementById("giverResults");
+
+    const q=
+        input.value.toLowerCase().trim();
+
+    let result=staff;
+
+    if(q){
+
+        result=staff.filter(s=>
+            s.name.toLowerCase().includes(q) ||
+            s.role.toLowerCase().includes(q)
+        );
+
+    }
+
+    if(result.length===0){
+
+        box.innerHTML=
+            `<div class="empty">ไม่พบบุคลากร</div>`;
+
+    }else{
+
+        box.innerHTML=result.map((s,i)=>`
+
+            <div
+                class="search-item"
+                onclick="chooseGiver(${staff.indexOf(s)})">
+
+                <strong>${s.name}</strong>
+
+                <small>${s.role}</small>
+
+            </div>
+
+        `).join("");
+
+    }
+
+    box.classList.add("show");
+}
+
+
+function chooseGiver(index){
+
+    const person=staff[index];
+
+    document.getElementById("giverSearch").value=
+        person.name;
+
+    document.getElementById("medGiver").value=
+        person.name;
+
+    document.getElementById("selectedGiver").innerText=
+        "✓ ผู้ให้ยา: "+person.name+" ("+person.role+")";
+
+    document
+        .getElementById("giverResults")
+        .classList.remove("show");
+}
+
+
+/* ปิด dropdown เมื่อคลิกที่อื่น */
+
+document.addEventListener("click",function(e){
+
+    if(!e.target.closest(".search-select")){
+
+        document
+            .querySelectorAll(".search-results")
+            .forEach(x=>x.classList.remove("show"));
+
+    }
+
+});
 
 
 /* =========================
@@ -1063,161 +1809,215 @@ if(page==="drugLibrary")searchDrugs();
 
 function statusClass(s){
 
-if(s==="ให้ยาแล้ว")return"done";
-if(s==="ใกล้ถึงเวลา")return"soon";
-if(s==="เลยกำหนด")return"late";
-return"waiting";
+    if(s==="ให้ยาแล้ว")return"done";
+    if(s==="ใกล้ถึงเวลา")return"soon";
+    if(s==="เลยกำหนด")return"late";
 
+    return"waiting";
 }
 
 
 function renderMedicines(){
 
-document.getElementById("medicineCount").innerText=
-medicines.length;
+    document.getElementById("medicineCount").innerText=
+        medicines.length;
 
-const rows=medicines.map((m,i)=>`
+    document.getElementById("medicineTable").innerHTML=
+        medicines.map((m,i)=>`
 
-<tr>
-<td>${formatDate(m.date)}</td>
-<td>${m.time}</td>
-<td>${m.patient}</td>
-<td><b>${m.drug}</b></td>
-<td>${m.dose}</td>
-<td>${m.giver||"-"}</td>
-<td>
-<span class="status ${statusClass(m.status)}">
-${m.status}
-</span>
-</td>
-<td>
-<button class="action" onclick="confirmMedicine(${i})">
-${m.status==="ให้ยาแล้ว"?"ดู":"ยืนยัน"}
-</button>
-</td>
-</tr>
+        <tr>
 
-`).join("");
+            <td>${formatDate(m.date)}</td>
 
-document.getElementById("medicineTable").innerHTML=rows;
+            <td>${m.time}</td>
 
-document.getElementById("allMedicineTable").innerHTML=
-medicines.map((m,i)=>`
+            <td>${m.patient}</td>
 
-<tr>
-<td>${formatDate(m.date)}</td>
-<td>${m.time}</td>
-<td>${m.patient}</td>
-<td>${m.drug}</td>
-<td>${m.dose}</td>
-<td>${m.route}</td>
-<td>${m.giver||"-"}</td>
-<td>
-<span class="status ${statusClass(m.status)}">
-${m.status}
-</span>
-</td>
-<td>
-<button class="action" onclick="confirmMedicine(${i})">
-${m.status==="ให้ยาแล้ว"?"ดู":"ยืนยัน"}
-</button>
-</td>
-</tr>
+            <td><b>${m.drug}</b></td>
 
-`).join("");
+            <td>${m.dose}</td>
 
+            <td>${m.giver||"-"}</td>
+
+            <td>
+                <span class="status ${statusClass(m.status)}">
+                    ${m.status}
+                </span>
+            </td>
+
+            <td>
+                <button
+                    class="action"
+                    onclick="confirmMedicine(${i})">
+
+                    ${m.status==="ให้ยาแล้ว"?"ดู":"ยืนยัน"}
+
+                </button>
+            </td>
+
+        </tr>
+
+        `).join("");
+
+
+    document.getElementById("allMedicineTable").innerHTML=
+        medicines.map((m,i)=>`
+
+        <tr>
+
+            <td>${formatDate(m.date)}</td>
+            <td>${m.time}</td>
+            <td>${m.patient}</td>
+            <td>${m.drug}</td>
+            <td>${m.dose}</td>
+            <td>${m.route}</td>
+            <td>${m.giver||"-"}</td>
+
+            <td>
+                <span class="status ${statusClass(m.status)}">
+                    ${m.status}
+                </span>
+            </td>
+
+            <td>
+
+                <button
+                    class="action"
+                    onclick="confirmMedicine(${i})">
+
+                    ${m.status==="ให้ยาแล้ว"?"ดู":"ยืนยัน"}
+
+                </button>
+
+            </td>
+
+        </tr>
+
+        `).join("");
 }
 
 
 function confirmMedicine(i){
 
-const m=medicines[i];
+    const m=medicines[i];
 
-if(m.status==="ให้ยาแล้ว"){
+    if(m.status==="ให้ยาแล้ว"){
 
-alert(
-"ผู้ป่วย: "+m.patient+
-"\nยา: "+m.drug+
-"\nผู้ให้ยา: "+m.giver+
-"\nเวลา: "+m.time
-);
+        alert(
+            "ผู้ป่วย: "+m.patient+
+            "\nยา: "+m.drug+
+            "\nผู้ให้ยา: "+m.giver+
+            "\nเวลา: "+m.time
+        );
 
-return;
+        return;
+    }
 
-}
+    const ok=confirm(
+        "ตรวจสอบข้อมูลก่อนยืนยัน\n\n"+
+        "ผู้ป่วย: "+m.patient+
+        "\nยา: "+m.drug+
+        "\nเวลา: "+m.time+
+        "\n\nยืนยันการให้ยาหรือไม่?"
+    );
 
-const ok=confirm(
-"ตรวจสอบข้อมูลก่อนยืนยัน\n\n"+
-"ผู้ป่วย: "+m.patient+
-"\nยา: "+m.drug+
-"\nเวลา: "+m.time+
-"\n\nยืนยันการให้ยาหรือไม่?"
-);
+    if(!ok)return;
 
-if(!ok)return;
+    m.giver=currentUser;
+    m.status="ให้ยาแล้ว";
 
-m.giver=currentUser;
-m.status="ให้ยาแล้ว";
+    history.unshift({
+        date:formatDate(m.date),
+        time:m.time,
+        patient:m.patient,
+        drug:m.drug,
+        giver:currentUser
+    });
 
-history.unshift({
-date:formatDate(m.date),
-time:m.time,
-patient:m.patient,
-drug:m.drug,
-giver:currentUser
-});
+    renderAll();
 
-renderAll();
-
-alert("บันทึกการให้ยาแล้ว");
-
+    alert("บันทึกการให้ยาแล้ว");
 }
 
 
 function addMedicine(){
 
-if(currentRole!=="Admin"){
+    if(currentRole!=="Admin"){
+        alert("เฉพาะ Admin เท่านั้น");
+        return;
+    }
 
-alert("เฉพาะ Admin เท่านั้น");
-return;
+    const date=
+        document.getElementById("medDate").value;
 
-}
+    const time=
+        document.getElementById("medTime").value;
 
-const date=document.getElementById("medDate").value;
-const time=document.getElementById("medTime").value;
-const patient=document.getElementById("medPatient").value;
-const drug=document.getElementById("medDrug").value;
-const dose=document.getElementById("medDose").value.trim();
-const route=document.getElementById("medRoute").value;
-const giver=document.getElementById("medGiver").value;
+    const patient=
+        document.getElementById("medPatient").value;
 
-if(!date||!time||!patient||!drug||!dose||!giver){
+    const drug=
+        document.getElementById("medDrug").value;
 
-alert("กรุณากรอกข้อมูลให้ครบ");
-return;
+    const dose=
+        document.getElementById("medDose").value.trim();
 
-}
+    const route=
+        document.getElementById("medRoute").value;
 
-medicines.push({
-date,time,patient,drug,dose,route,giver,
-status:"รอดำเนินการ"
-});
+    const giver=
+        document.getElementById("medGiver").value;
 
-clearMedicineForm();
-renderAll();
+    if(
+        !date ||
+        !time ||
+        !patient ||
+        !drug ||
+        !dose ||
+        !giver
+    ){
 
-alert("เพิ่มรายการยาแล้ว");
+        alert("กรุณากรอกข้อมูลให้ครบ และเลือกยา/ผู้ให้ยาจากรายการ");
+        return;
+    }
 
+    medicines.push({
+        date,
+        time,
+        patient,
+        drug,
+        dose,
+        route,
+        giver,
+        status:"รอดำเนินการ"
+    });
+
+    clearMedicineForm();
+
+    renderAll();
+
+    alert("เพิ่มรายการยาแล้ว");
 }
 
 
 function clearMedicineForm(){
 
-document.getElementById("medDate").value="";
-document.getElementById("medTime").value="";
-document.getElementById("medDrug").value="";
-document.getElementById("medDose").value="";
+    document.getElementById("medDate").value="";
+    document.getElementById("medTime").value="";
 
+    document.getElementById("medDrugSearch").value="";
+    document.getElementById("medDrug").value="";
+
+    document.getElementById("selectedDrug").innerText=
+        "ยังไม่ได้เลือกยา";
+
+    document.getElementById("medDose").value="";
+
+    document.getElementById("giverSearch").value="";
+    document.getElementById("medGiver").value="";
+
+    document.getElementById("selectedGiver").innerText=
+        "ยังไม่ได้เลือกผู้ให้ยา";
 }
 
 
@@ -1227,73 +2027,95 @@ document.getElementById("medDose").value="";
 
 function searchDrugs(){
 
-const q=
-(document.getElementById("drugSearch").value||"")
-.toLowerCase()
-.trim();
+    const q=
+        (document.getElementById("drugSearch").value||"")
+        .toLowerCase()
+        .trim();
 
-const result=drugs.filter(d=>
-d[0].toLowerCase().includes(q)||
-d[1].toLowerCase().includes(q)||
-d[2].toLowerCase().includes(q)
-);
+    const result=drugs.filter(d=>
+        d[0].toLowerCase().includes(q) ||
+        d[1].toLowerCase().includes(q) ||
+        d[2].toLowerCase().includes(q)
+    );
 
-document.getElementById("drugResultCount").innerText=
-"พบ "+result.length+" รายการ จากทั้งหมด "+drugs.length+" รายการ";
+    document.getElementById("drugResultCount").innerText=
+        "พบ "+result.length+
+        " รายการ จากทั้งหมด "+
+        drugs.length+" รายการ";
 
-document.getElementById("drugCount").innerText=drugs.length;
+    document.getElementById("drugCount").innerText=
+        drugs.length;
 
-const grid=document.getElementById("drugGrid");
+    const grid=
+        document.getElementById("drugGrid");
 
-if(result.length===0){
+    if(result.length===0){
 
-grid.innerHTML=
-`<div class="empty">ไม่พบรายการยาที่ค้นหา</div>`;
+        grid.innerHTML=
+            `<div class="empty">ไม่พบรายการยาที่ค้นหา</div>`;
 
-return;
+        return;
+    }
 
+    grid.innerHTML=result.map(d=>`
+
+        <div class="drug-card">
+
+            <h3>${d[0]}</h3>
+
+            <p>
+                <b>ชื่อสามัญ:</b>
+                ${d[1]}
+            </p>
+
+            <p>
+                <b>กลุ่ม:</b>
+                ${d[2]}
+            </p>
+
+            <button
+                onclick="selectDrugFromLibrary('${escapeQuotes(d[0])}')">
+
+                เลือกยานี้
+
+            </button>
+
+        </div>
+
+    `).join("");
 }
 
-grid.innerHTML=result.map(d=>`
 
-<div class="drug-card">
+function escapeQuotes(text){
 
-<h3>${d[0]}</h3>
-
-<p><b>ชื่อสามัญ:</b> ${d[1]}</p>
-
-<p><b>กลุ่ม:</b> ${d[2]}</p>
-
-<button onclick="selectDrug('${d[0]}')">
-เลือกยานี้
-</button>
-
-</div>
-
-`).join("");
-
+    return text
+        .replace(/\\/g,"\\\\")
+        .replace(/'/g,"\\'");
 }
 
 
-function selectDrug(name){
+function selectDrugFromLibrary(name){
 
-if(currentRole!=="Admin"){
+    if(currentRole!=="Admin"){
 
-alert(
-"User สามารถค้นหาและดูข้อมูลยาได้\n"+
-"การสร้างคำสั่ง/รายการยาให้ทำโดยผู้มีสิทธิ์ตามระบบ"
-);
+        alert(
+            "คุณสามารถค้นหาและดูข้อมูลยาได้\n"+
+            "การสร้างรายการยาต้องใช้สิทธิ์ Admin"
+        );
 
-return;
+        return;
+    }
 
-}
+    const menuButton=
+        document.querySelectorAll(".menu button")[2];
 
-openPage(
-"medications",
-document.querySelectorAll(".menu button")[2]
-);
+    openPage("medications",menuButton);
 
-document.getElementById("medDrug").value=name;
+    document.getElementById("medDrugSearch").value=name;
+    document.getElementById("medDrug").value=name;
+
+    document.getElementById("selectedDrug").innerText=
+        "✓ เลือกยา: "+name;
 
 }
 
@@ -1304,43 +2126,53 @@ document.getElementById("medDrug").value=name;
 
 function renderPatients(){
 
-document.getElementById("patientTable").innerHTML=
-patients.map(p=>`
+    document.getElementById("patientTable").innerHTML=
+        patients.map(p=>`
 
-<tr>
-<td>${p[0]}</td>
-<td>${p[1]}</td>
-<td>${p[2]}</td>
-<td>${p[3]}</td>
-</tr>
+        <tr>
 
-`).join("");
+            <td>${p[0]}</td>
+            <td>${p[1]}</td>
+            <td>${p[2]}</td>
+            <td>${p[3]}</td>
 
-const options=patients.map(p=>
-`<option value="${p[1]}">${p[1]} — เตียง ${p[2]}</option>`
-).join("");
+        </tr>
 
-document.getElementById("medPatient").innerHTML=options;
-document.getElementById("problemPatient").innerHTML=options;
+        `).join("");
 
+
+    const options=patients.map(p=>
+        `<option value="${p[1]}">
+            ${p[1]} — เตียง ${p[2]}
+        </option>`
+    ).join("");
+
+    document.getElementById("medPatient").innerHTML=
+        options;
+
+    document.getElementById("problemPatient").innerHTML=
+        options;
 }
 
 
 function searchPatient(){
 
-const q=
-document.getElementById("patientSearch")
-.value.toLowerCase();
+    const q=
+        document.getElementById("patientSearch")
+        .value.toLowerCase();
 
-document.querySelectorAll("#patientTable tr")
-.forEach(row=>{
+    document
+        .querySelectorAll("#patientTable tr")
+        .forEach(row=>{
 
-row.style.display=
-row.innerText.toLowerCase().includes(q)
-?"":"none";
+            row.style.display=
+                row.innerText
+                .toLowerCase()
+                .includes(q)
+                ? ""
+                : "none";
 
-});
-
+        });
 }
 
 
@@ -1350,72 +2182,76 @@ row.innerText.toLowerCase().includes(q)
 
 function renderStaff(){
 
-document.getElementById("staffTable").innerHTML=
-staff.map((s,i)=>`
+    document.getElementById("staffTable").innerHTML=
+        staff.map((s,i)=>`
 
-<tr>
-<td>${s.name}</td>
-<td>${s.role}</td>
-<td>
-<button class="action danger"
-onclick="deleteStaff(${i})">
-ลบ
-</button>
-</td>
-</tr>
+        <tr>
 
-`).join("");
+            <td>${s.name}</td>
+            <td>${s.role}</td>
 
-document.getElementById("medGiver").innerHTML=
-`<option value="">-- เลือกผู้ให้ยา --</option>`+
-staff.map(s=>
-`<option value="${s.name}">
-${s.name} — ${s.role}
-</option>`
-).join("");
+            <td>
 
+                <button
+                    class="action danger"
+                    onclick="deleteStaff(${i})">
+
+                    ลบ
+
+                </button>
+
+            </td>
+
+        </tr>
+
+        `).join("");
 }
 
 
 function addStaff(){
 
-if(currentRole!=="Admin")return;
+    if(currentRole!=="Admin"){
+        alert("เฉพาะ Admin เท่านั้น");
+        return;
+    }
 
-const name=
-document.getElementById("staffName").value.trim();
+    const name=
+        document.getElementById("staffName")
+        .value.trim();
 
-const role=
-document.getElementById("staffRole").value;
+    const role=
+        document.getElementById("staffRole").value;
 
-if(!name){
+    if(!name){
 
-alert("กรุณากรอกชื่อบุคลากร");
-return;
+        alert("กรุณากรอกชื่อบุคลากร");
+        return;
+    }
 
-}
+    staff.push({
+        name,
+        role
+    });
 
-staff.push({name,role});
+    document.getElementById("staffName").value="";
 
-document.getElementById("staffName").value="";
+    renderStaff();
 
-renderStaff();
-
-alert("เพิ่มบุคลากรแล้ว");
-
+    alert("เพิ่มบุคลากรแล้ว");
 }
 
 
 function deleteStaff(i){
 
-if(currentRole!=="Admin")return;
+    if(currentRole!=="Admin")return;
 
-if(confirm("ต้องการลบบุคลากรนี้หรือไม่?")){
+    if(confirm("ต้องการลบบุคลากรนี้หรือไม่?")){
 
-staff.splice(i,1);
-renderStaff();
+        staff.splice(i,1);
 
-}
+        renderStaff();
 
+    }
 }
 
 
@@ -1425,94 +2261,114 @@ renderStaff();
 
 function submitProblem(){
 
-const patient=
-document.getElementById("problemPatient").value;
+    const patient=
+        document.getElementById("problemPatient").value;
 
-const priority=
-document.getElementById("problemPriority").value;
+    const priority=
+        document.getElementById("problemPriority").value;
 
-const type=
-document.getElementById("problemType").value;
+    const type=
+        document.getElementById("problemType").value;
 
-const detail=
-document.getElementById("problemDetail").value.trim();
+    const detail=
+        document.getElementById("problemDetail")
+        .value.trim();
 
-if(!detail){
+    if(!detail){
 
-alert("กรุณากรอกรายละเอียด");
-return;
+        alert("กรุณากรอกรายละเอียด");
+        return;
+    }
 
-}
+    problems.unshift({
+        patient,
+        priority,
+        type,
+        detail,
+        reporter:currentUser,
+        date:new Date().toLocaleString("th-TH"),
+        status:"รอดำเนินการ"
+    });
 
-problems.unshift({
-patient,priority,type,detail,
-reporter:currentUser,
-date:new Date().toLocaleString("th-TH"),
-status:"รอดำเนินการ"
-});
+    document.getElementById("problemDetail").value="";
 
-document.getElementById("problemDetail").value="";
+    renderProblems();
 
-renderProblems();
-
-alert("ส่งรายงานแล้ว");
-
+    alert("ส่งรายงานแล้ว");
 }
 
 
 function renderProblems(){
 
-document.getElementById("problemCount").innerText=
-problems.length;
+    document.getElementById("problemCount").innerText=
+        problems.length;
 
-const list=document.getElementById("problemList");
+    const list=
+        document.getElementById("problemList");
 
-if(!problems.length){
+    if(!problems.length){
 
-list.innerHTML=
-`<div class="panel empty">ยังไม่มีรายงานปัญหา</div>`;
+        list.innerHTML=
+            `<div class="panel empty">
+                ยังไม่มีรายงานปัญหา
+            </div>`;
 
-return;
+        return;
+    }
 
-}
+    list.innerHTML=
+        problems.map((p,i)=>`
 
-list.innerHTML=problems.map((p,i)=>`
+        <div class="panel" style="margin-bottom:10px">
 
-<div class="panel" style="margin-bottom:10px">
+            <div class="alert-box
+                ${p.priority==="เร่งด่วนมาก"?"alert-high":""}">
 
-<div class="alert-box ${p.priority==="เร่งด่วนมาก"?"alert-high":""}">
+                <b>🚨 ${p.type}</b><br>
 
-<b>🚨 ${p.type}</b><br>
-ผู้ป่วย: ${p.patient}<br>
-ความเร่งด่วน: ${p.priority}<br>
-รายละเอียด: ${p.detail}<br>
-ผู้รายงาน: ${p.reporter}<br>
-วันที่: ${p.date}<br>
-สถานะ: <b>${p.status}</b>
+                ผู้ป่วย: ${p.patient}<br>
 
-</div>
+                ความเร่งด่วน: ${p.priority}<br>
 
-${currentRole==="Admin"&&p.status!=="แก้ไขแล้ว"?
-`<button class="action"
-onclick="resolveProblem(${i})">
-ทำเครื่องหมายว่าแก้ไขแล้ว
-</button>`:""}
+                รายละเอียด: ${p.detail}<br>
 
-</div>
+                ผู้รายงาน: ${p.reporter}<br>
 
-`).join("");
+                วันที่: ${p.date}<br>
 
+                สถานะ:
+                <b>${p.status}</b>
+
+            </div>
+
+            ${
+                currentRole==="Admin" &&
+                p.status!=="แก้ไขแล้ว"
+                ?
+                `<button
+                    class="action"
+                    onclick="resolveProblem(${i})">
+
+                    ทำเครื่องหมายว่าแก้ไขแล้ว
+
+                </button>`
+                :
+                ""
+            }
+
+        </div>
+
+        `).join("");
 }
 
 
 function resolveProblem(i){
 
-if(currentRole!=="Admin")return;
+    if(currentRole!=="Admin")return;
 
-problems[i].status="แก้ไขแล้ว";
+    problems[i].status="แก้ไขแล้ว";
 
-renderProblems();
-
+    renderProblems();
 }
 
 
@@ -1522,20 +2378,23 @@ renderProblems();
 
 function renderHistory(){
 
-document.getElementById("historyTable").innerHTML=
-history.map(h=>`
+    document.getElementById("historyTable").innerHTML=
+        history.map(h=>`
 
-<tr>
-<td>${h.date}</td>
-<td>${h.time}</td>
-<td>${h.patient}</td>
-<td>${h.drug}</td>
-<td>${h.giver}</td>
-<td class="green">ยืนยันแล้ว</td>
-</tr>
+        <tr>
 
-`).join("");
+            <td>${h.date}</td>
+            <td>${h.time}</td>
+            <td>${h.patient}</td>
+            <td>${h.drug}</td>
+            <td>${h.giver}</td>
+            <td class="green">
+                ยืนยันแล้ว
+            </td>
 
+        </tr>
+
+        `).join("");
 }
 
 
@@ -1543,156 +2402,197 @@ history.map(h=>`
    CALENDAR
 ========================= */
 
-let calendarDate=new Date(2026,8,27);
+let calendarDate=
+    new Date(2026,8,27);
 
 const months=[
-"มกราคม","กุมภาพันธ์","มีนาคม","เมษายน",
-"พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม",
-"กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"
+    "มกราคม",
+    "กุมภาพันธ์",
+    "มีนาคม",
+    "เมษายน",
+    "พฤษภาคม",
+    "มิถุนายน",
+    "กรกฎาคม",
+    "สิงหาคม",
+    "กันยายน",
+    "ตุลาคม",
+    "พฤศจิกายน",
+    "ธันวาคม"
 ];
 
 
 function renderCalendar(){
 
-const y=calendarDate.getFullYear();
-const m=calendarDate.getMonth();
+    const y=
+        calendarDate.getFullYear();
 
-document.getElementById("calendarTitle").innerText=
-months[m]+" "+(y+543);
+    const m=
+        calendarDate.getMonth();
 
-const grid=document.getElementById("calendarGrid");
+    document.getElementById("calendarTitle").innerText=
+        months[m]+" "+(y+543);
 
-grid.innerHTML="";
+    const grid=
+        document.getElementById("calendarGrid");
 
-const first=new Date(y,m,1).getDay();
-const total=new Date(y,m+1,0).getDate();
+    grid.innerHTML="";
 
-for(let i=0;i<first;i++){
+    const first=
+        new Date(y,m,1).getDay();
 
-const empty=document.createElement("div");
-empty.className="day";
-empty.style.visibility="hidden";
-grid.appendChild(empty);
+    const total=
+        new Date(y,m+1,0).getDate();
 
-}
+    for(let i=0;i<first;i++){
 
-for(let d=1;d<=total;d++){
+        const empty=
+            document.createElement("div");
 
-const cell=document.createElement("div");
-cell.className="day";
+        empty.className="day";
+        empty.style.visibility="hidden";
 
-const date=
-y+"-"+String(m+1).padStart(2,"0")+"-"+String(d).padStart(2,"0");
+        grid.appendChild(empty);
+    }
 
-if(date==="2026-09-27"){
-cell.classList.add("today");
-}
+    for(let d=1;d<=total;d++){
 
-cell.innerHTML=
-`<div class="day-number">${d}</div>`;
+        const cell=
+            document.createElement("div");
 
-medicines
-.filter(x=>x.date===date)
-.forEach(x=>{
+        cell.className="day";
 
-const e=document.createElement("div");
+        const date=
+            y+"-"+
+            String(m+1).padStart(2,"0")+
+            "-"+
+            String(d).padStart(2,"0");
 
-e.className=
-"event "+(x.status==="ให้ยาแล้ว"?"done":"");
+        if(date==="2026-09-27"){
+            cell.classList.add("today");
+        }
 
-e.innerText=x.time+" "+x.drug;
+        cell.innerHTML=
+            `<div class="day-number">${d}</div>`;
 
-cell.appendChild(e);
+        medicines
+            .filter(x=>x.date===date)
+            .forEach(x=>{
 
-});
+                const event=
+                    document.createElement("div");
 
-cell.onclick=()=>showCalendarDay(date);
+                event.className=
+                    "event "+
+                    (x.status==="ให้ยาแล้ว"?"done":"");
 
-grid.appendChild(cell);
+                event.innerText=
+                    x.time+" "+x.drug;
 
-}
+                cell.appendChild(event);
+            });
 
+        cell.onclick=
+            ()=>showCalendarDay(date);
+
+        grid.appendChild(cell);
+    }
 }
 
 
 function showCalendarDay(date){
 
-const events=medicines.filter(x=>x.date===date);
+    const events=
+        medicines.filter(x=>x.date===date);
 
-let html=
-`<h3>📅 ${formatDate(date)}</h3>`;
+    let html=
+        `<h3>📅 ${formatDate(date)}</h3>`;
 
-if(!events.length){
+    if(!events.length){
 
-html+="<p>ไม่มีรายการยา</p>";
+        html+="<p>ไม่มีรายการยา</p>";
 
-}else{
+    }else{
 
-html+=`
+        html+=`
 
-<table>
-<thead>
-<tr>
-<th>เวลา</th>
-<th>ผู้ป่วย</th>
-<th>ยา</th>
-<th>ผู้ให้ยา</th>
-<th>สถานะ</th>
-</tr>
-</thead>
-<tbody>
-`;
+        <table>
 
-events.forEach(x=>{
+        <thead>
 
-html+=`
+        <tr>
+            <th>เวลา</th>
+            <th>ผู้ป่วย</th>
+            <th>ยา</th>
+            <th>ผู้ให้ยา</th>
+            <th>สถานะ</th>
+        </tr>
 
-<tr>
-<td>${x.time}</td>
-<td>${x.patient}</td>
-<td>${x.drug}</td>
-<td>${x.giver||"-"}</td>
-<td>
-<span class="status ${statusClass(x.status)}">
-${x.status}
-</span>
-</td>
-</tr>
+        </thead>
 
-`;
+        <tbody>
+        `;
 
-});
+        events.forEach(x=>{
 
-html+="</tbody></table>";
+            html+=`
 
-}
+            <tr>
 
-document.getElementById("calendarDetail").innerHTML=html;
+                <td>${x.time}</td>
+                <td>${x.patient}</td>
+                <td>${x.drug}</td>
+                <td>${x.giver||"-"}</td>
 
+                <td>
+
+                    <span
+                        class="status ${statusClass(x.status)}">
+
+                        ${x.status}
+
+                    </span>
+
+                </td>
+
+            </tr>
+
+            `;
+        });
+
+        html+="</tbody></table>";
+    }
+
+    document.getElementById("calendarDetail").innerHTML=
+        html;
 }
 
 
 function previousMonth(){
 
-calendarDate.setMonth(calendarDate.getMonth()-1);
-renderCalendar();
+    calendarDate.setMonth(
+        calendarDate.getMonth()-1
+    );
 
+    renderCalendar();
 }
 
 
 function nextMonth(){
 
-calendarDate.setMonth(calendarDate.getMonth()+1);
-renderCalendar();
+    calendarDate.setMonth(
+        calendarDate.getMonth()+1
+    );
 
+    renderCalendar();
 }
 
 
 function todayMonth(){
 
-calendarDate=new Date(2026,8,27);
-renderCalendar();
+    calendarDate=
+        new Date(2026,8,27);
 
+    renderCalendar();
 }
 
 
@@ -1702,24 +2602,34 @@ renderCalendar();
 
 function formatDate(d){
 
-const p=d.split("-");
+    const p=d.split("-");
 
-return p[2]+"/"+p[1]+"/"+p[0];
-
+    return p[2]+"/"+p[1]+"/"+p[0];
 }
 
 
 function renderAll(){
 
-renderMedicines();
-renderPatients();
-renderStaff();
-renderProblems();
-renderHistory();
-renderCalendar();
-searchDrugs();
+    renderMedicines();
+    renderPatients();
+    renderStaff();
+    renderProblems();
+    renderHistory();
+    renderCalendar();
+    searchDrugs();
 
 }
+
+
+/* =========================
+   START
+========================= */
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+    renderAll();
+
+});
 
 </script>
 
