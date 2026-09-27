@@ -3,354 +3,428 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MedCare Hospital v2</title>
+<title>MedCare v2.1</title>
 
 <style>
 *{box-sizing:border-box}
 
 body{
-    margin:0;
-    font-family:Arial,"Noto Sans Thai",sans-serif;
-    background:#f3f8fa;
-    color:#183b56;
+  margin:0;
+  font-family:Arial,"Noto Sans Thai",sans-serif;
+  background:#f3f8fa;
+  color:#183b56;
 }
 
-button,input{
-    font:inherit;
+button,input,select{
+  font:inherit;
 }
 
-/* LOGIN */
 #loginPage{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    background:linear-gradient(135deg,#087f8c,#075e69);
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:linear-gradient(135deg,#087f8c,#075e69);
 }
 
 .login-box{
-    width:100%;
-    max-width:400px;
-    background:white;
-    padding:35px;
-    border-radius:20px;
-    box-shadow:0 20px 50px rgba(0,0,0,.2);
+  width:100%;
+  max-width:400px;
+  background:white;
+  padding:35px;
+  border-radius:20px;
+  box-shadow:0 20px 50px rgba(0,0,0,.2);
 }
 
 .logo{
-    width:65px;
-    height:65px;
-    margin:auto;
-    border-radius:16px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#087f8c;
-    color:white;
-    font-size:32px;
+  width:65px;
+  height:65px;
+  margin:auto;
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#087f8c;
+  color:white;
+  font-size:32px;
 }
 
 .login-box h1{
-    text-align:center;
-    margin:15px 0 5px;
+  text-align:center;
+  margin:15px 0 5px;
 }
 
 .login-box p{
-    text-align:center;
-    color:#718797;
+  text-align:center;
+  color:#718797;
 }
 
 label{
-    display:block;
-    margin:16px 0 7px;
-    font-weight:bold;
-    font-size:14px;
+  display:block;
+  margin:15px 0 7px;
+  font-weight:bold;
+  font-size:14px;
 }
 
-input{
-    width:100%;
-    padding:13px;
-    border:1px solid #d9e5ea;
-    border-radius:10px;
-    outline:none;
-}
-
-input:focus{
-    border-color:#087f8c;
+input,select{
+  width:100%;
+  padding:12px;
+  border:1px solid #d9e5ea;
+  border-radius:10px;
+  outline:none;
 }
 
 .login-btn{
-    width:100%;
-    margin-top:20px;
-    padding:13px;
-    border:0;
-    border-radius:10px;
-    background:#087f8c;
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
+  width:100%;
+  margin-top:20px;
+  padding:13px;
+  border:0;
+  border-radius:10px;
+  background:#087f8c;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
 }
 
 .demo{
-    margin-top:15px;
-    padding:12px;
-    border-radius:10px;
-    background:#edf8fa;
-    text-align:center;
-    font-size:12px;
+  margin-top:15px;
+  padding:12px;
+  border-radius:10px;
+  background:#edf8fa;
+  text-align:center;
+  font-size:12px;
 }
 
-/* APP */
 #appPage{
-    display:none;
-    min-height:100vh;
+  display:none;
+  min-height:100vh;
 }
 
 .sidebar{
-    position:fixed;
-    left:0;
-    top:0;
-    bottom:0;
-    width:240px;
-    padding:22px 16px;
-    background:white;
-    border-right:1px solid #e2ebef;
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  width:240px;
+  padding:22px 16px;
+  background:white;
+  border-right:1px solid #e2ebef;
 }
 
 .brand{
-    padding:10px;
-    margin-bottom:25px;
-    font-size:22px;
-    font-weight:bold;
-    color:#087f8c;
+  padding:10px;
+  margin-bottom:25px;
+  font-size:22px;
+  font-weight:bold;
+  color:#087f8c;
 }
 
 .menu button{
-    width:100%;
-    padding:13px;
-    margin-bottom:5px;
-    border:0;
-    border-radius:10px;
-    background:transparent;
-    text-align:left;
-    color:#526b7b;
-    cursor:pointer;
+  width:100%;
+  padding:13px;
+  margin-bottom:5px;
+  border:0;
+  border-radius:10px;
+  background:transparent;
+  text-align:left;
+  color:#526b7b;
+  cursor:pointer;
 }
 
 .menu button:hover,
 .menu button.active{
-    background:#e4f6f8;
-    color:#087f8c;
-    font-weight:bold;
+  background:#e4f6f8;
+  color:#087f8c;
+  font-weight:bold;
 }
 
 .logout{
-    position:absolute;
-    left:16px;
-    right:16px;
-    bottom:20px;
-    padding:11px;
-    border:0;
-    border-radius:10px;
-    background:#ffe5e5;
-    color:#c92a2a;
-    cursor:pointer;
+  position:absolute;
+  left:16px;
+  right:16px;
+  bottom:20px;
+  padding:11px;
+  border:0;
+  border-radius:10px;
+  background:#ffe5e5;
+  color:#c92a2a;
+  cursor:pointer;
 }
 
 .main{
-    margin-left:240px;
-    padding:30px;
+  margin-left:240px;
+  padding:30px;
 }
 
 .header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:25px;
 }
 
 .header h1{
-    margin:0;
+  margin:0;
 }
 
 .header p{
-    margin:5px 0;
-    color:#718797;
+  margin:5px 0;
+  color:#718797;
 }
 
 .user{
-    background:white;
-    padding:11px 15px;
-    border-radius:10px;
+  background:white;
+  padding:11px 15px;
+  border-radius:10px;
 }
 
-/* CARDS */
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
 .cards{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
 }
 
 .card{
-    background:white;
-    padding:20px;
-    border-radius:15px;
-    box-shadow:0 4px 15px rgba(0,0,0,.05);
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  box-shadow:0 4px 15px rgba(0,0,0,.05);
 }
 
 .card span{
-    color:#718797;
-    font-size:13px;
+  color:#718797;
+  font-size:13px;
 }
 
 .card strong{
-    display:block;
-    font-size:30px;
-    margin-top:5px;
+  display:block;
+  font-size:30px;
+  margin-top:5px;
 }
 
 .orange{color:#d99016}
 .red{color:#d64545}
 .green{color:#29945c}
 
-/* PAGES */
-.page{
-    display:none;
-}
-
-.page.active{
-    display:block;
-}
-
 .section{
-    margin-top:25px;
+  margin-top:25px;
 }
 
 .panel{
-    background:white;
-    padding:20px;
-    border-radius:15px;
-    box-shadow:0 4px 15px rgba(0,0,0,.05);
-    overflow-x:auto;
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  box-shadow:0 4px 15px rgba(0,0,0,.05);
+  overflow-x:auto;
 }
 
 table{
-    width:100%;
-    min-width:750px;
-    border-collapse:collapse;
+  width:100%;
+  min-width:800px;
+  border-collapse:collapse;
 }
 
 th,td{
-    padding:13px;
-    border-bottom:1px solid #edf2f5;
-    text-align:left;
-    font-size:13px;
+  padding:13px;
+  border-bottom:1px solid #edf2f5;
+  text-align:left;
+  font-size:13px;
 }
 
 th{
-    background:#f8fbfc;
-    color:#6b8190;
+  background:#f8fbfc;
+  color:#6b8190;
 }
 
 .status{
-    padding:5px 9px;
-    border-radius:20px;
-    font-size:11px;
-    font-weight:bold;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:bold;
 }
 
 .waiting{
-    background:#e4f6f8;
-    color:#087f8c;
+  background:#e4f6f8;
+  color:#087f8c;
 }
 
 .soon{
-    background:#fff2cd;
-    color:#9b6c00;
+  background:#fff2cd;
+  color:#9b6c00;
 }
 
 .late{
-    background:#ffe3e3;
-    color:#c92a2a;
+  background:#ffe3e3;
+  color:#c92a2a;
 }
 
 .done{
-    background:#e1f7e9;
-    color:#218838;
+  background:#e1f7e9;
+  color:#218838;
 }
 
 .action{
-    border:0;
-    padding:8px 12px;
-    border-radius:8px;
-    background:#087f8c;
-    color:white;
-    cursor:pointer;
+  border:0;
+  padding:8px 12px;
+  border-radius:8px;
+  background:#087f8c;
+  color:white;
+  cursor:pointer;
 }
 
 .action:hover{
-    background:#066b76;
+  background:#066b76;
 }
 
 .search{
-    max-width:400px;
-    margin-bottom:15px;
+  max-width:400px;
+  margin-bottom:15px;
+}
+
+/* CALENDAR */
+
+.calendar-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:15px;
+  gap:10px;
+}
+
+.calendar-buttons button{
+  border:0;
+  background:#e4f6f8;
+  color:#087f8c;
+  padding:9px 14px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.calendar-title{
+  font-size:20px;
+  font-weight:bold;
+}
+
+.calendar{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:6px;
+}
+
+.day-name{
+  padding:10px;
+  text-align:center;
+  font-weight:bold;
+  color:#718797;
+}
+
+.day{
+  min-height:105px;
+  padding:8px;
+  background:#f9fcfd;
+  border:1px solid #e4edf1;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.day:hover{
+  border-color:#087f8c;
+}
+
+.day.today{
+  background:#e4f6f8;
+  border:2px solid #087f8c;
+}
+
+.day-number{
+  font-weight:bold;
+}
+
+.event{
+  margin-top:6px;
+  padding:5px;
+  border-radius:6px;
+  background:#fff2cd;
+  color:#7d5c00;
+  font-size:11px;
+}
+
+.event.done{
+  background:#e1f7e9;
+  color:#218838;
+}
+
+.calendar-detail{
+  margin-top:20px;
 }
 
 .notification{
-    padding:15px;
-    border-bottom:1px solid #edf2f5;
-}
-
-.notification:last-child{
-    border:0;
+  padding:15px;
+  border-bottom:1px solid #edf2f5;
 }
 
 @media(max-width:900px){
 
-    .sidebar{
-        position:relative;
-        width:100%;
-        height:auto;
-    }
+  .sidebar{
+    position:relative;
+    width:100%;
+    height:auto;
+  }
 
-    .logout{
-        position:relative;
-        left:auto;
-        right:auto;
-        bottom:auto;
-        width:100%;
-        margin-top:10px;
-    }
+  .logout{
+    position:relative;
+    left:auto;
+    right:auto;
+    bottom:auto;
+    width:100%;
+    margin-top:10px;
+  }
 
-    .main{
-        margin-left:0;
-        padding:18px;
-    }
+  .main{
+    margin-left:0;
+    padding:18px;
+  }
 
-    .cards{
-        grid-template-columns:repeat(2,1fr);
-    }
+  .cards{
+    grid-template-columns:repeat(2,1fr);
+  }
 }
 
-@media(max-width:500px){
+@media(max-width:600px){
 
-    .cards{
-        grid-template-columns:1fr;
-    }
+  .cards{
+    grid-template-columns:1fr;
+  }
 
-    .header{
-        display:block;
-    }
+  .header{
+    display:block;
+  }
 
-    .user{
-        margin-top:12px;
-    }
+  .user{
+    margin-top:12px;
+  }
 
-    .login-box{
-        padding:25px;
-    }
+  .calendar{
+    gap:3px;
+  }
+
+  .day{
+    min-height:80px;
+    padding:5px;
+  }
+
+  .event{
+    font-size:9px;
+  }
 }
 </style>
 </head>
@@ -366,7 +440,6 @@ th{
 <div class="logo">✚</div>
 
 <h1>MedCare</h1>
-
 <p>Hospital Medication System</p>
 
 <form onsubmit="login(event)">
@@ -402,19 +475,16 @@ Password: <b>1234</b>
 </div>
 
 </div>
-
 </div>
 
 
-<!-- APPLICATION -->
+<!-- APP -->
 
 <div id="appPage">
 
 <aside class="sidebar">
 
-<div class="brand">
-✚ MedCare
-</div>
+<div class="brand">✚ MedCare</div>
 
 <div class="menu">
 
@@ -431,12 +501,16 @@ onclick="openPage('dashboard',this)">
 💊 รายการยา
 </button>
 
+<button onclick="openPage('calendarPage',this)">
+📅 ปฏิทินการให้ยา
+</button>
+
 <button onclick="openPage('notifications',this)">
 🔔 แจ้งเตือน
 </button>
 
 <button onclick="openPage('history',this)">
-📋 ประวัติการให้ยา
+📋 ประวัติ
 </button>
 
 </div>
@@ -458,7 +532,7 @@ onclick="openPage('dashboard',this)">
 </div>
 
 <div class="user">
-👩‍⚕️ <b>พยาบาลเวรเช้า</b>
+👩‍⚕️ <b id="currentUser">พยาบาลเวรเช้า</b>
 </div>
 
 </header>
@@ -492,7 +566,6 @@ onclick="openPage('dashboard',this)">
 
 </div>
 
-
 <div class="section">
 
 <h2>🔔 รายการยาที่ต้องดำเนินการ</h2>
@@ -508,6 +581,7 @@ onclick="openPage('dashboard',this)">
 <th>เตียง</th>
 <th>ยา</th>
 <th>ขนาด</th>
+<th>ผู้ให้ยา</th>
 <th>สถานะ</th>
 <th></th>
 </tr>
@@ -518,7 +592,6 @@ onclick="openPage('dashboard',this)">
 </table>
 
 </div>
-
 </div>
 
 </section>
@@ -577,6 +650,7 @@ onkeyup="searchPatient()"
 <th>ยา</th>
 <th>ขนาด</th>
 <th>วิธีให้</th>
+<th>ผู้ให้ยา</th>
 <th>สถานะ</th>
 <th></th>
 </tr>
@@ -585,6 +659,52 @@ onkeyup="searchPatient()"
 <tbody id="allMedicineTable"></tbody>
 
 </table>
+
+</div>
+
+</section>
+
+
+<!-- CALENDAR -->
+
+<section id="calendarPage" class="page">
+
+<h2>📅 ปฏิทินการให้ยา</h2>
+
+<div class="panel">
+
+<div class="calendar-top">
+
+<div class="calendar-buttons">
+<button onclick="previousMonth()">‹ เดือนก่อน</button>
+<button onclick="todayMonth()">วันนี้</button>
+<button onclick="nextMonth()">เดือนถัดไป ›</button>
+</div>
+
+<div class="calendar-title" id="calendarTitle"></div>
+
+</div>
+
+<div class="calendar">
+
+<div class="day-name">อา.</div>
+<div class="day-name">จ.</div>
+<div class="day-name">อ.</div>
+<div class="day-name">พ.</div>
+<div class="day-name">พฤ.</div>
+<div class="day-name">ศ.</div>
+<div class="day-name">ส.</div>
+
+</div>
+
+<div class="calendar" id="calendarGrid"></div>
+
+<div class="calendar-detail" id="calendarDetail">
+
+<h3>เลือกรายการในปฏิทิน</h3>
+<p>กดวันที่เพื่อดูรายการให้ยา</p>
+
+</div>
 
 </div>
 
@@ -601,16 +721,16 @@ onkeyup="searchPatient()"
 
 <div class="notification">
 ⚠️ <b>เตียง 302/2</b>
-ยาสำหรับผู้ป่วยตัวอย่าง D เลยกำหนด
+รายการยาเลยกำหนด
 </div>
 
 <div class="notification">
 ⏰ <b>เตียง 301/2</b>
-รายการยาจะถึงเวลาในเร็ว ๆ นี้
+รายการยาใกล้ถึงเวลา
 </div>
 
 <div class="notification">
-✅ มีรายการที่ยืนยันการให้ยาแล้ววันนี้
+✅ มีรายการยาที่ได้รับการยืนยันแล้ววันนี้
 </div>
 
 </div>
@@ -630,10 +750,11 @@ onkeyup="searchPatient()"
 
 <thead>
 <tr>
+<th>วันที่</th>
 <th>เวลา</th>
 <th>ผู้ป่วย</th>
 <th>ยา</th>
-<th>ผู้ดำเนินการ</th>
+<th>ผู้ให้ยา</th>
 <th>ผล</th>
 </tr>
 </thead>
@@ -641,17 +762,10 @@ onkeyup="searchPatient()"
 <tbody id="historyTable">
 
 <tr>
+<td>27/09/2026</td>
 <td>07:58</td>
 <td>ผู้ป่วยตัวอย่าง A</td>
 <td>Paracetamol</td>
-<td>พยาบาลเวรเช้า</td>
-<td class="green">ยืนยันแล้ว</td>
-</tr>
-
-<tr>
-<td>08:03</td>
-<td>ผู้ป่วยตัวอย่าง B</td>
-<td>Omeprazole</td>
 <td>พยาบาลเวรเช้า</td>
 <td class="green">ยืนยันแล้ว</td>
 </tr>
@@ -665,51 +779,60 @@ onkeyup="searchPatient()"
 </section>
 
 </main>
-
 </div>
 
 
 <script>
 
+let currentUser="พยาบาลเวรเช้า";
+
 const medicines=[
 
 {
+date:"2026-09-27",
 time:"08:00",
 patient:"ผู้ป่วยตัวอย่าง A",
 bed:"301/1",
 drug:"Paracetamol",
 dose:"500 mg",
 route:"PO",
+giver:"",
 status:"รอดำเนินการ"
 },
 
 {
+date:"2026-09-27",
 time:"08:30",
 patient:"ผู้ป่วยตัวอย่าง B",
 bed:"301/2",
 drug:"Omeprazole",
 dose:"20 mg",
 route:"PO",
+giver:"",
 status:"ใกล้ถึงเวลา"
 },
 
 {
+date:"2026-09-28",
 time:"09:00",
 patient:"ผู้ป่วยตัวอย่าง C",
 bed:"302/1",
 drug:"Ceftriaxone",
 dose:"1 g",
 route:"IV",
+giver:"",
 status:"รอดำเนินการ"
 },
 
 {
+date:"2026-09-29",
 time:"07:30",
 patient:"ผู้ป่วยตัวอย่าง D",
 bed:"302/2",
 drug:"Amlodipine",
 dose:"5 mg",
 route:"PO",
+giver:"",
 status:"เลยกำหนด"
 }
 
@@ -740,6 +863,10 @@ const password=
 document.getElementById("password").value;
 
 if(username==="nurse" && password==="1234"){
+
+currentUser="พยาบาลเวรเช้า";
+
+document.getElementById("currentUser").innerText=currentUser;
 
 document.getElementById("loginPage").style.display="none";
 
@@ -789,28 +916,30 @@ patients:"ผู้ป่วย",
 
 medications:"รายการยา",
 
+calendarPage:"ปฏิทินการให้ยา",
+
 notifications:"การแจ้งเตือน",
 
 history:"ประวัติการให้ยา"
 
 };
 
-document.getElementById("pageTitle").innerText=
-titles[page];
+document.getElementById("pageTitle").innerText=titles[page];
+
+if(page==="calendarPage"){
+renderCalendar();
+}
 
 }
 
 
 function statusClass(status){
 
-if(status==="เลยกำหนด")
-return "late";
+if(status==="เลยกำหนด") return "late";
 
-if(status==="ใกล้ถึงเวลา")
-return "soon";
+if(status==="ใกล้ถึงเวลา") return "soon";
 
-if(status==="ให้ยาแล้ว")
-return "done";
+if(status==="ให้ยาแล้ว") return "done";
 
 return "waiting";
 
@@ -819,16 +948,11 @@ return "waiting";
 
 function renderMedicines(){
 
-const table=
-document.getElementById("medicineTable");
+const table=document.getElementById("medicineTable");
 
-const allTable=
-document.getElementById("allMedicineTable");
+const allTable=document.getElementById("allMedicineTable");
 
-
-table.innerHTML=
-
-medicines.map((m,index)=>`
+table.innerHTML=medicines.map((m,index)=>`
 
 <tr>
 
@@ -842,6 +966,8 @@ medicines.map((m,index)=>`
 
 <td>${m.dose}</td>
 
+<td>${m.giver || "-"}</td>
+
 <td>
 <span class="status ${statusClass(m.status)}">
 ${m.status}
@@ -854,7 +980,7 @@ ${m.status}
 class="action"
 onclick="confirmMedicine(${index})">
 
-ตรวจสอบ
+${m.status==="ให้ยาแล้ว" ? "ดูข้อมูล" : "ตรวจสอบ"}
 
 </button>
 
@@ -865,9 +991,7 @@ onclick="confirmMedicine(${index})">
 `).join("");
 
 
-allTable.innerHTML=
-
-medicines.map((m,index)=>`
+allTable.innerHTML=medicines.map((m,index)=>`
 
 <tr>
 
@@ -881,6 +1005,8 @@ medicines.map((m,index)=>`
 
 <td>${m.route}</td>
 
+<td>${m.giver || "-"}</td>
+
 <td>
 <span class="status ${statusClass(m.status)}">
 ${m.status}
@@ -893,7 +1019,7 @@ ${m.status}
 class="action"
 onclick="confirmMedicine(${index})">
 
-ยืนยัน
+${m.status==="ให้ยาแล้ว" ? "ดู" : "ยืนยัน"}
 
 </button>
 
@@ -910,7 +1036,27 @@ function confirmMedicine(index){
 
 const m=medicines[index];
 
-const result=confirm(
+if(m.status==="ให้ยาแล้ว"){
+
+alert(
+
+"ข้อมูลการให้ยา\n\n"+
+
+"ผู้ป่วย: "+m.patient+"\n"+
+
+"ยา: "+m.drug+"\n"+
+
+"ผู้ให้ยา: "+m.giver+"\n"+
+
+"เวลา: "+m.time
+
+);
+
+return;
+
+}
+
+const confirmed=confirm(
 
 "ตรวจสอบข้อมูลการให้ยา\n\n"+
 
@@ -930,36 +1076,59 @@ const result=confirm(
 
 );
 
-if(result){
+if(!confirmed) return;
 
-medicines[index].status="ให้ยาแล้ว";
+
+m.giver=currentUser;
+
+m.status="ให้ยาแล้ว";
 
 renderMedicines();
 
-alert("บันทึกการยืนยันแล้ว (ข้อมูลทดลอง)");
+addHistory(m);
+
+alert(
+"บันทึกการให้ยาแล้ว\n\nผู้ให้ยา: "+currentUser
+);
 
 }
+
+
+function addHistory(m){
+
+const table=document.getElementById("historyTable");
+
+const today=new Date().toLocaleDateString("th-TH");
+
+const row=document.createElement("tr");
+
+row.innerHTML=`
+
+<td>${today}</td>
+<td>${m.time}</td>
+<td>${m.patient}</td>
+<td>${m.drug}</td>
+<td>${m.giver}</td>
+<td class="green">ยืนยันแล้ว</td>
+
+`;
+
+table.prepend(row);
 
 }
 
 
 function renderPatients(){
 
-const table=
-document.getElementById("patientTable");
+const table=document.getElementById("patientTable");
 
-table.innerHTML=
-
-patients.map(p=>`
+table.innerHTML=patients.map(p=>`
 
 <tr>
 
 <td>${p[0]}</td>
-
 <td>${p[1]}</td>
-
 <td>${p[2]}</td>
-
 <td>${p[3]}</td>
 
 <td>
@@ -1027,7 +1196,203 @@ alert(
 }
 
 
+/* CALENDAR */
+
+let calendarDate=new Date(2026,8,27);
+
+const monthNames=[
+"มกราคม","กุมภาพันธ์","มีนาคม","เมษายน",
+"พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม",
+"กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"
+];
+
+
+function renderCalendar(){
+
+const year=calendarDate.getFullYear();
+
+const month=calendarDate.getMonth();
+
+document.getElementById("calendarTitle").innerText=
+monthNames[month]+" "+(year+543);
+
+const grid=document.getElementById("calendarGrid");
+
+grid.innerHTML="";
+
+const firstDay=new Date(year,month,1).getDay();
+
+const daysInMonth=new Date(year,month+1,0).getDate();
+
+
+for(let i=0;i<firstDay;i++){
+
+const empty=document.createElement("div");
+
+empty.className="day";
+
+empty.style.visibility="hidden";
+
+grid.appendChild(empty);
+
+}
+
+
+for(let day=1;day<=daysInMonth;day++){
+
+const cell=document.createElement("div");
+
+cell.className="day";
+
+const dateString=
+year+"-"+String(month+1).padStart(2,"0")+"-"+String(day).padStart(2,"0");
+
+const todayString="2026-09-27";
+
+if(dateString===todayString){
+cell.classList.add("today");
+}
+
+cell.innerHTML=
+`<div class="day-number">${day}</div>`;
+
+
+const events=
+medicines.filter(m=>m.date===dateString);
+
+
+events.forEach(m=>{
+
+const event=document.createElement("div");
+
+event.className=
+"event "+(m.status==="ให้ยาแล้ว"?"done":"");
+
+event.innerText=
+m.time+" "+m.drug;
+
+cell.appendChild(event);
+
+});
+
+
+cell.onclick=()=>showCalendarDay(dateString);
+
+grid.appendChild(cell);
+
+}
+
+}
+
+
+function showCalendarDay(dateString){
+
+const detail=
+document.getElementById("calendarDetail");
+
+const events=
+medicines.filter(m=>m.date===dateString);
+
+let html=
+`<h3>📅 รายการวันที่ ${formatDate(dateString)}</h3>`;
+
+if(events.length===0){
+
+html+="<p>ไม่มีรายการให้ยาในวันนี้</p>";
+
+}else{
+
+html+=`
+
+<table>
+
+<thead>
+<tr>
+<th>เวลา</th>
+<th>ผู้ป่วย</th>
+<th>ยา</th>
+<th>ผู้ให้ยา</th>
+<th>สถานะ</th>
+</tr>
+</thead>
+
+<tbody>
+
+`;
+
+events.forEach(m=>{
+
+html+=`
+
+<tr>
+
+<td>${m.time}</td>
+
+<td>${m.patient}</td>
+
+<td>${m.drug}</td>
+
+<td>${m.giver || "-"}</td>
+
+<td>
+<span class="status ${statusClass(m.status)}">
+${m.status}
+</span>
+</td>
+
+</tr>
+
+`;
+
+});
+
+html+=`</tbody></table>`;
+
+}
+
+detail.innerHTML=html;
+
+}
+
+
+function formatDate(dateString){
+
+const parts=dateString.split("-");
+
+return parts[2]+"/"+parts[1]+"/"+(Number(parts[0])+543);
+
+}
+
+
+function previousMonth(){
+
+calendarDate.setMonth(calendarDate.getMonth()-1);
+
+renderCalendar();
+
+}
+
+
+function nextMonth(){
+
+calendarDate.setMonth(calendarDate.getMonth()+1);
+
+renderCalendar();
+
+}
+
+
+function todayMonth(){
+
+calendarDate=new Date(2026,8,27);
+
+renderCalendar();
+
+}
+
+
 renderMedicines();
+
 renderPatients();
 
 </script>
