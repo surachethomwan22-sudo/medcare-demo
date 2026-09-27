@@ -1,1 +1,1036 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MedCare Hospital v2</title>
 
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial,"Noto Sans Thai",sans-serif;
+    background:#f3f8fa;
+    color:#183b56;
+}
+
+button,input{
+    font:inherit;
+}
+
+/* LOGIN */
+#loginPage{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:linear-gradient(135deg,#087f8c,#075e69);
+}
+
+.login-box{
+    width:100%;
+    max-width:400px;
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 20px 50px rgba(0,0,0,.2);
+}
+
+.logo{
+    width:65px;
+    height:65px;
+    margin:auto;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#087f8c;
+    color:white;
+    font-size:32px;
+}
+
+.login-box h1{
+    text-align:center;
+    margin:15px 0 5px;
+}
+
+.login-box p{
+    text-align:center;
+    color:#718797;
+}
+
+label{
+    display:block;
+    margin:16px 0 7px;
+    font-weight:bold;
+    font-size:14px;
+}
+
+input{
+    width:100%;
+    padding:13px;
+    border:1px solid #d9e5ea;
+    border-radius:10px;
+    outline:none;
+}
+
+input:focus{
+    border-color:#087f8c;
+}
+
+.login-btn{
+    width:100%;
+    margin-top:20px;
+    padding:13px;
+    border:0;
+    border-radius:10px;
+    background:#087f8c;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.demo{
+    margin-top:15px;
+    padding:12px;
+    border-radius:10px;
+    background:#edf8fa;
+    text-align:center;
+    font-size:12px;
+}
+
+/* APP */
+#appPage{
+    display:none;
+    min-height:100vh;
+}
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    width:240px;
+    padding:22px 16px;
+    background:white;
+    border-right:1px solid #e2ebef;
+}
+
+.brand{
+    padding:10px;
+    margin-bottom:25px;
+    font-size:22px;
+    font-weight:bold;
+    color:#087f8c;
+}
+
+.menu button{
+    width:100%;
+    padding:13px;
+    margin-bottom:5px;
+    border:0;
+    border-radius:10px;
+    background:transparent;
+    text-align:left;
+    color:#526b7b;
+    cursor:pointer;
+}
+
+.menu button:hover,
+.menu button.active{
+    background:#e4f6f8;
+    color:#087f8c;
+    font-weight:bold;
+}
+
+.logout{
+    position:absolute;
+    left:16px;
+    right:16px;
+    bottom:20px;
+    padding:11px;
+    border:0;
+    border-radius:10px;
+    background:#ffe5e5;
+    color:#c92a2a;
+    cursor:pointer;
+}
+
+.main{
+    margin-left:240px;
+    padding:30px;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.header h1{
+    margin:0;
+}
+
+.header p{
+    margin:5px 0;
+    color:#718797;
+}
+
+.user{
+    background:white;
+    padding:11px 15px;
+    border-radius:10px;
+}
+
+/* CARDS */
+.cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.05);
+}
+
+.card span{
+    color:#718797;
+    font-size:13px;
+}
+
+.card strong{
+    display:block;
+    font-size:30px;
+    margin-top:5px;
+}
+
+.orange{color:#d99016}
+.red{color:#d64545}
+.green{color:#29945c}
+
+/* PAGES */
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+.section{
+    margin-top:25px;
+}
+
+.panel{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.05);
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    min-width:750px;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:13px;
+    border-bottom:1px solid #edf2f5;
+    text-align:left;
+    font-size:13px;
+}
+
+th{
+    background:#f8fbfc;
+    color:#6b8190;
+}
+
+.status{
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.waiting{
+    background:#e4f6f8;
+    color:#087f8c;
+}
+
+.soon{
+    background:#fff2cd;
+    color:#9b6c00;
+}
+
+.late{
+    background:#ffe3e3;
+    color:#c92a2a;
+}
+
+.done{
+    background:#e1f7e9;
+    color:#218838;
+}
+
+.action{
+    border:0;
+    padding:8px 12px;
+    border-radius:8px;
+    background:#087f8c;
+    color:white;
+    cursor:pointer;
+}
+
+.action:hover{
+    background:#066b76;
+}
+
+.search{
+    max-width:400px;
+    margin-bottom:15px;
+}
+
+.notification{
+    padding:15px;
+    border-bottom:1px solid #edf2f5;
+}
+
+.notification:last-child{
+    border:0;
+}
+
+@media(max-width:900px){
+
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+    }
+
+    .logout{
+        position:relative;
+        left:auto;
+        right:auto;
+        bottom:auto;
+        width:100%;
+        margin-top:10px;
+    }
+
+    .main{
+        margin-left:0;
+        padding:18px;
+    }
+
+    .cards{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:500px){
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .header{
+        display:block;
+    }
+
+    .user{
+        margin-top:12px;
+    }
+
+    .login-box{
+        padding:25px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+
+<div id="loginPage">
+
+<div class="login-box">
+
+<div class="logo">✚</div>
+
+<h1>MedCare</h1>
+
+<p>Hospital Medication System</p>
+
+<form onsubmit="login(event)">
+
+<label>ชื่อผู้ใช้งาน</label>
+
+<input
+id="username"
+type="text"
+placeholder="กรอกชื่อผู้ใช้งาน"
+required
+>
+
+<label>รหัสผ่าน</label>
+
+<input
+id="password"
+type="password"
+placeholder="กรอกรหัสผ่าน"
+required
+>
+
+<button class="login-btn">
+เข้าสู่ระบบ
+</button>
+
+</form>
+
+<div class="demo">
+บัญชีทดลอง<br>
+Username: <b>nurse</b><br>
+Password: <b>1234</b>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- APPLICATION -->
+
+<div id="appPage">
+
+<aside class="sidebar">
+
+<div class="brand">
+✚ MedCare
+</div>
+
+<div class="menu">
+
+<button class="active"
+onclick="openPage('dashboard',this)">
+🏠 Dashboard
+</button>
+
+<button onclick="openPage('patients',this)">
+👤 ผู้ป่วย
+</button>
+
+<button onclick="openPage('medications',this)">
+💊 รายการยา
+</button>
+
+<button onclick="openPage('notifications',this)">
+🔔 แจ้งเตือน
+</button>
+
+<button onclick="openPage('history',this)">
+📋 ประวัติการให้ยา
+</button>
+
+</div>
+
+<button class="logout" onclick="logout()">
+ออกจากระบบ
+</button>
+
+</aside>
+
+
+<main class="main">
+
+<header class="header">
+
+<div>
+<h1 id="pageTitle">Dashboard</h1>
+<p>ระบบจัดการและติดตามการให้ยา</p>
+</div>
+
+<div class="user">
+👩‍⚕️ <b>พยาบาลเวรเช้า</b>
+</div>
+
+</header>
+
+
+<!-- DASHBOARD -->
+
+<section id="dashboard" class="page active">
+
+<div class="cards">
+
+<div class="card">
+<span>ผู้ป่วยที่ดูแล</span>
+<strong>24</strong>
+</div>
+
+<div class="card">
+<span>ยาที่ต้องให้วันนี้</span>
+<strong>38</strong>
+</div>
+
+<div class="card">
+<span>ใกล้ถึงเวลา</span>
+<strong class="orange">7</strong>
+</div>
+
+<div class="card">
+<span>เลยกำหนด</span>
+<strong class="red">2</strong>
+</div>
+
+</div>
+
+
+<div class="section">
+
+<h2>🔔 รายการยาที่ต้องดำเนินการ</h2>
+
+<div class="panel">
+
+<table>
+
+<thead>
+<tr>
+<th>เวลา</th>
+<th>ผู้ป่วย</th>
+<th>เตียง</th>
+<th>ยา</th>
+<th>ขนาด</th>
+<th>สถานะ</th>
+<th></th>
+</tr>
+</thead>
+
+<tbody id="medicineTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PATIENTS -->
+
+<section id="patients" class="page">
+
+<h2>👤 รายชื่อผู้ป่วย</h2>
+
+<input
+class="search"
+id="patientSearch"
+placeholder="ค้นหา HN หรือชื่อผู้ป่วย"
+onkeyup="searchPatient()"
+>
+
+<div class="panel">
+
+<table>
+
+<thead>
+<tr>
+<th>HN</th>
+<th>ชื่อผู้ป่วย</th>
+<th>ห้อง / เตียง</th>
+<th>แพทย์</th>
+<th></th>
+</tr>
+</thead>
+
+<tbody id="patientTable"></tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- MEDICATIONS -->
+
+<section id="medications" class="page">
+
+<h2>💊 รายการยา</h2>
+
+<div class="panel">
+
+<table>
+
+<thead>
+<tr>
+<th>เวลา</th>
+<th>ผู้ป่วย</th>
+<th>ยา</th>
+<th>ขนาด</th>
+<th>วิธีให้</th>
+<th>สถานะ</th>
+<th></th>
+</tr>
+</thead>
+
+<tbody id="allMedicineTable"></tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- NOTIFICATIONS -->
+
+<section id="notifications" class="page">
+
+<h2>🔔 การแจ้งเตือน</h2>
+
+<div class="panel">
+
+<div class="notification">
+⚠️ <b>เตียง 302/2</b>
+ยาสำหรับผู้ป่วยตัวอย่าง D เลยกำหนด
+</div>
+
+<div class="notification">
+⏰ <b>เตียง 301/2</b>
+รายการยาจะถึงเวลาในเร็ว ๆ นี้
+</div>
+
+<div class="notification">
+✅ มีรายการที่ยืนยันการให้ยาแล้ววันนี้
+</div>
+
+</div>
+
+</section>
+
+
+<!-- HISTORY -->
+
+<section id="history" class="page">
+
+<h2>📋 ประวัติการให้ยา</h2>
+
+<div class="panel">
+
+<table>
+
+<thead>
+<tr>
+<th>เวลา</th>
+<th>ผู้ป่วย</th>
+<th>ยา</th>
+<th>ผู้ดำเนินการ</th>
+<th>ผล</th>
+</tr>
+</thead>
+
+<tbody id="historyTable">
+
+<tr>
+<td>07:58</td>
+<td>ผู้ป่วยตัวอย่าง A</td>
+<td>Paracetamol</td>
+<td>พยาบาลเวรเช้า</td>
+<td class="green">ยืนยันแล้ว</td>
+</tr>
+
+<tr>
+<td>08:03</td>
+<td>ผู้ป่วยตัวอย่าง B</td>
+<td>Omeprazole</td>
+<td>พยาบาลเวรเช้า</td>
+<td class="green">ยืนยันแล้ว</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+
+<script>
+
+const medicines=[
+
+{
+time:"08:00",
+patient:"ผู้ป่วยตัวอย่าง A",
+bed:"301/1",
+drug:"Paracetamol",
+dose:"500 mg",
+route:"PO",
+status:"รอดำเนินการ"
+},
+
+{
+time:"08:30",
+patient:"ผู้ป่วยตัวอย่าง B",
+bed:"301/2",
+drug:"Omeprazole",
+dose:"20 mg",
+route:"PO",
+status:"ใกล้ถึงเวลา"
+},
+
+{
+time:"09:00",
+patient:"ผู้ป่วยตัวอย่าง C",
+bed:"302/1",
+drug:"Ceftriaxone",
+dose:"1 g",
+route:"IV",
+status:"รอดำเนินการ"
+},
+
+{
+time:"07:30",
+patient:"ผู้ป่วยตัวอย่าง D",
+bed:"302/2",
+drug:"Amlodipine",
+dose:"5 mg",
+route:"PO",
+status:"เลยกำหนด"
+}
+
+];
+
+
+const patients=[
+
+["HN10021","ผู้ป่วยตัวอย่าง A","301/1","นพ.สมชาย"],
+
+["HN10022","ผู้ป่วยตัวอย่าง B","301/2","พญ.กมล"],
+
+["HN10023","ผู้ป่วยตัวอย่าง C","302/1","นพ.วิชัย"],
+
+["HN10024","ผู้ป่วยตัวอย่าง D","302/2","พญ.อรทัย"]
+
+];
+
+
+function login(event){
+
+event.preventDefault();
+
+const username=
+document.getElementById("username").value;
+
+const password=
+document.getElementById("password").value;
+
+if(username==="nurse" && password==="1234"){
+
+document.getElementById("loginPage").style.display="none";
+
+document.getElementById("appPage").style.display="block";
+
+}else{
+
+alert("ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง");
+
+}
+
+}
+
+
+function logout(){
+
+document.getElementById("appPage").style.display="none";
+
+document.getElementById("loginPage").style.display="flex";
+
+document.getElementById("password").value="";
+
+}
+
+
+function openPage(page,button){
+
+document
+.querySelectorAll(".page")
+.forEach(p=>p.classList.remove("active"));
+
+document
+.getElementById(page)
+.classList.add("active");
+
+document
+.querySelectorAll(".menu button")
+.forEach(b=>b.classList.remove("active"));
+
+button.classList.add("active");
+
+const titles={
+
+dashboard:"Dashboard",
+
+patients:"ผู้ป่วย",
+
+medications:"รายการยา",
+
+notifications:"การแจ้งเตือน",
+
+history:"ประวัติการให้ยา"
+
+};
+
+document.getElementById("pageTitle").innerText=
+titles[page];
+
+}
+
+
+function statusClass(status){
+
+if(status==="เลยกำหนด")
+return "late";
+
+if(status==="ใกล้ถึงเวลา")
+return "soon";
+
+if(status==="ให้ยาแล้ว")
+return "done";
+
+return "waiting";
+
+}
+
+
+function renderMedicines(){
+
+const table=
+document.getElementById("medicineTable");
+
+const allTable=
+document.getElementById("allMedicineTable");
+
+
+table.innerHTML=
+
+medicines.map((m,index)=>`
+
+<tr>
+
+<td><b>${m.time}</b></td>
+
+<td>${m.patient}</td>
+
+<td>${m.bed}</td>
+
+<td><b>${m.drug}</b></td>
+
+<td>${m.dose}</td>
+
+<td>
+<span class="status ${statusClass(m.status)}">
+${m.status}
+</span>
+</td>
+
+<td>
+
+<button
+class="action"
+onclick="confirmMedicine(${index})">
+
+ตรวจสอบ
+
+</button>
+
+</td>
+
+</tr>
+
+`).join("");
+
+
+allTable.innerHTML=
+
+medicines.map((m,index)=>`
+
+<tr>
+
+<td>${m.time}</td>
+
+<td>${m.patient}</td>
+
+<td>${m.drug}</td>
+
+<td>${m.dose}</td>
+
+<td>${m.route}</td>
+
+<td>
+<span class="status ${statusClass(m.status)}">
+${m.status}
+</span>
+</td>
+
+<td>
+
+<button
+class="action"
+onclick="confirmMedicine(${index})">
+
+ยืนยัน
+
+</button>
+
+</td>
+
+</tr>
+
+`).join("");
+
+}
+
+
+function confirmMedicine(index){
+
+const m=medicines[index];
+
+const result=confirm(
+
+"ตรวจสอบข้อมูลการให้ยา\n\n"+
+
+"ผู้ป่วย: "+m.patient+"\n"+
+
+"เตียง: "+m.bed+"\n"+
+
+"ยา: "+m.drug+"\n"+
+
+"ขนาด: "+m.dose+"\n"+
+
+"วิธีให้: "+m.route+"\n"+
+
+"เวลาที่กำหนด: "+m.time+"\n\n"+
+
+"ยืนยันว่าตรวจสอบข้อมูลครบถ้วนแล้วหรือไม่?"
+
+);
+
+if(result){
+
+medicines[index].status="ให้ยาแล้ว";
+
+renderMedicines();
+
+alert("บันทึกการยืนยันแล้ว (ข้อมูลทดลอง)");
+
+}
+
+}
+
+
+function renderPatients(){
+
+const table=
+document.getElementById("patientTable");
+
+table.innerHTML=
+
+patients.map(p=>`
+
+<tr>
+
+<td>${p[0]}</td>
+
+<td>${p[1]}</td>
+
+<td>${p[2]}</td>
+
+<td>${p[3]}</td>
+
+<td>
+
+<button
+class="action"
+onclick="viewPatient('${p[0]}')">
+
+ดูข้อมูล
+
+</button>
+
+</td>
+
+</tr>
+
+`).join("");
+
+}
+
+
+function searchPatient(){
+
+const query=
+document
+.getElementById("patientSearch")
+.value
+.toLowerCase();
+
+document
+.querySelectorAll("#patientTable tr")
+.forEach(row=>{
+
+row.style.display=
+row.innerText
+.toLowerCase()
+.includes(query)
+?""
+:"none";
+
+});
+
+}
+
+
+function viewPatient(hn){
+
+const patient=
+patients.find(p=>p[0]===hn);
+
+alert(
+
+"ข้อมูลผู้ป่วย\n\n"+
+
+"HN: "+patient[0]+"\n"+
+
+"ชื่อ: "+patient[1]+"\n"+
+
+"ห้อง/เตียง: "+patient[2]+"\n"+
+
+"แพทย์: "+patient[3]
+
+);
+
+}
+
+
+renderMedicines();
+renderPatients();
+
+</script>
+
+</body>
+</html>
